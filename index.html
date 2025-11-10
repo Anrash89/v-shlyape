@@ -103,22 +103,22 @@
         #course-selection h2 {
             font-family: 'Bebas Neue', sans-serif;
             color: var(--primary-color);
-            font-size: 2.8em;
-            margin-bottom: 30px;
+            font-size: 2.4em;
+            margin-bottom: 20px;
             text-transform: uppercase;
-            -webkit-text-stroke: 1.2px var(--text-stroke-color);
-            text-stroke: 1.2px var(--text-stroke-color);
+            -webkit-text-stroke: 1px var(--text-stroke-color);
+            text-stroke: 1px var(--text-stroke-color);
             border-bottom: 2px dashed var(--primary-color);
-            padding-bottom: 10px;
+            padding-bottom: 8px;
             max-width: 760px;
-            margin: 0 auto 30px auto;
+            margin: 0 auto 20px auto;
         }
 
         .carousel-wrapper {
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             padding: 10px 0;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
@@ -170,19 +170,19 @@
 
         .course-card h3 {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 2em;
+            font-size: 1.8em;
             color: var(--primary-color);
             text-transform: uppercase;
             margin-bottom: 5px;
             border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 5px;
+            padding-bottom: 4px;
         }
 
         .course-card p {
             color: #555;
             font-style: italic;
             font-size: 0.9em;
-            margin-top: 10px;
+            margin-top: 8px;
         }
 
         .card-image {
@@ -209,8 +209,8 @@
         #lesson-list-title {
             font-family: 'Permanent Marker', cursive;
             color: var(--accent-color);
-            font-size: 2.2em;
-            margin-bottom: 15px;
+            font-size: 2em;
+            margin-bottom: 10px;
         }
 
         #lesson-list {
@@ -222,8 +222,8 @@
         .lesson-item {
             background-color: #fff;
             border-radius: 10px;
-            padding: 10px 14px;
-            margin-bottom: 8px;
+            padding: 8px 12px;
+            margin-bottom: 6px;
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
             cursor: pointer;
             transition: all 0.2s ease;
@@ -246,7 +246,7 @@
 
         .lesson-item-preview {
             width: 90px;
-            height: 60px;
+            height: 56px;
             border-radius: 6px;
             object-fit: cover;
             flex-shrink: 0;
@@ -257,14 +257,14 @@
         .lesson-item span.title {
             flex-grow: 1;
             text-align: left;
-            font-size: 0.95em;
+            font-size: 0.92em;
         }
 
         .lesson-item span.duration {
-            display: none; /* если понадобится — включим */
+            display: none;
         }
 
-        /* --- ВИДЕО-ПЛЕЕР --- */
+        /* --- ВИДЕО-ПЛЕЕР 16:9 --- */
         #video-player-view {
             text-align: center;
             padding: 20px;
@@ -272,13 +272,14 @@
             border: var(--border-thick);
             border-radius: 12px;
             box-shadow: 5px 5px 0 var(--primary-color);
-            max-width: 500px;
+            max-width: 700px;
             margin: 20px auto;
         }
 
         #current-lesson-name-label {
-            margin-top: 10px;
+            margin-top: 6px;
             font-weight: 700;
+            font-size: 0.95em;
         }
 
         #current-lesson-name {
@@ -286,20 +287,20 @@
         }
 
         .video-player-container-kinescope {
-            margin-top: 20px;
-            margin-bottom: 10px;
+            margin-top: 14px;
+            margin-bottom: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
             border-radius: 12px;
             overflow: hidden;
             position: relative;
-            padding-top: 177.34%;
+            padding-top: 56.25%; /* 16:9 */
             width: 100%;
             background: #000;
         }
 
-        @media (min-width: 600px) {
+        @media (min-width: 768px) {
             .video-player-container-kinescope {
-                max-width: 320px;
+                max-width: 640px;
                 margin-left: auto;
                 margin-right: auto;
             }
@@ -326,14 +327,14 @@
         }
 
         .placeholder-content {
-            padding: 10px 0;
+            padding: 6px 0;
             color: var(--primary-color);
         }
 
         .placeholder-icon {
-            font-size: 3em;
+            font-size: 2.6em;
             color: var(--gold-color);
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             display: block;
             animation: pulse 2s infinite;
         }
@@ -345,12 +346,12 @@
             padding: 8px 18px;
             border-radius: 6px;
             cursor: pointer;
-            margin-bottom: 18px;
+            margin-bottom: 14px;
             font-weight: 700;
             transition: all 0.1s;
             width: 100%;
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.2em;
+            font-size: 1.1em;
             box-shadow: 3px 3px 0 var(--accent-color);
             text-transform: uppercase;
         }
@@ -365,7 +366,7 @@
 
         .hidden { display: none !important; }
 
-        /* --- РЕГИСТРАЦИЯ (СКОПИРОВАНО ИЗ РАБОЧЕГО ВАРИАНТА) --- */
+        /* --- РЕГИСТРАЦИЯ --- */
         .registration-overlay {
             position: fixed;
             top: 0; left: 0;
@@ -435,6 +436,11 @@
             gap: 8px;
             margin-top: 10px;
         }
+
+        /* Подсказка для ПК/мобилы */
+        @media (min-width: 769px) {
+            #swipe-hint { font-size: 0.8em; opacity: 0.8; }
+        }
     </style>
 </head>
 <body>
@@ -453,7 +459,7 @@
     <!-- ВЫБОР НАБОРА -->
     <section id="course-selection">
         <h2>Выберите свой обучающий набор техник</h2>
-        <div class="carousel-wrapper">
+        <div class="carousel-wrapper" id="course-carousel-wrapper">
             <div class="course-carousel">
                 <div class="course-card" data-id="set_75" data-type="big">
                     <img src="images/set1.png" alt="75 лучших фокусов" class="card-image">
@@ -493,8 +499,8 @@
                 </div>
             </div>
         </div>
-        <p style="text-align: center; color: var(--primary-color); font-weight: 700; margin-top: 15px;">
-            ← Смахните, чтобы увидеть все наборы →
+        <p id="swipe-hint" style="text-align: center; color: var(--primary-color); font-weight: 700; margin-top: 4px;">
+            На телефоне — свайпните по карточкам. На компьютере — прокрутите колесо мыши вбок.
         </p>
     </section>
 
@@ -506,9 +512,9 @@
         <h2 id="lesson-list-title">Набор:</h2>
 
         <div class="placeholder-content" id="lessons-placeholder">
-            <span class="placeholder-icon">⏳</span>
-            <p style="font-size: 1.05em; font-weight: 700; margin-bottom: 6px;">
-                Загрузились уроки для набора <span id="placeholder-course-name"></span>.
+            <span class="placeholder-icon">🎬</span>
+            <p style="font-size: 1.0em; font-weight: 700; margin-bottom: 4px;">
+                Уроки для набора <span id="placeholder-course-name"></span> загружены.
             </p>
             <p style="font-size: 0.9em;">
                 Выберите урок из списка ниже, чтобы посмотреть видео.
@@ -539,7 +545,7 @@
             <img id="video-thumbnail-large" class="video-thumbnail-large" src="" alt="Превью урока">
         </div>
 
-        <div class="placeholder-content" id="no-video-warning" class="hidden">
+        <div id="no-video-warning" class="placeholder-content hidden">
             <span class="placeholder-icon">🚫</span>
             <p style="font-size: 0.95em; font-weight: 700;">
                 Для этого урока пока не привязан видеоролик.
@@ -568,7 +574,8 @@
             <div id="policy-full-view" class="hidden">
                 <p><b>Дата публикации действующей редакции: 1 сентября 2025 года</b></p>
                 <div class="policy-text-container">
-                    <p><b>1. Общие положения</b> — здесь твоя длинная политика, как в рабочем варианте (можно вставить один-в-один).</p>
+                    <!-- сюда можешь вставить полный текст политики как в первом сайте -->
+                    <p>1. Общие положения, стороны, цель документа...</p>
                 </div>
                 <button id="agree-final-btn" class="form-button">Согласиться с Политикой</button>
             </div>
@@ -588,7 +595,7 @@
                         <input type="tel" id="reg-phone" name="phone" pattern="\+?[0-9]{10,15}" required placeholder="+79123456789">
                     </div>
                     <div class="form-group hidden">
-                        <label for="reg-tg-id">Telegram ID (скрыто):</label>
+                        <label for="reg-tg-id">Telegram ID (Скрыто):</label>
                         <input type="text" id="reg-tg-id" name="tg_id">
                     </div>
                     <button type="submit" id="submit-reg-btn" class="form-button">Зарегистрироваться и начать</button>
@@ -612,280 +619,117 @@
 <script>
     // === 0. КОНСТАНТЫ ===
     const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby2R4j1aBQ2zmybXyqjVhgFntoduCYYX6AuZ8kMmRUWdF8ZQCNTTpPij0kmxaSxAZmjvg/exec';
-
     const IMAGE_BASE_URL = 'images/';
     const USER_STORAGE_KEY = 'magic_course_user_registered_hat';
     const TG_ID_STORAGE_KEY = 'magic_course_tg_id_hat';
 
-    // === 1. ДАННЫЕ УРОКОВ ===
-
+    // Вспомогательная функция болванок
     function createLessonsFromNames(names, folder) {
         return names.map((name, index) => ({
             name,
             duration: '',
-            videoId: '', // СЮДА БУДЕМ ВСТАВЛЯТЬ ID KINESCOPE
+            videoId: '',
             imageUrl: `${IMAGE_BASE_URL}${folder}/${String(index + 1).padStart(2, '0')}.webp`
         }));
     }
 
-    // 35 лучших фокусов
-    const set35Names = [
-        'Фокус с волшебным футляром №1',
-        'Фокус с числовой головоломкой №1',
-        'Фокус с картами с символами №1',
-        'Фокус с картами с символами №2',
-        'Фокус с картами с символами №3',
-        'Фокус с поролоновыми шариками и кубиком',
-        'Фокус с головоломкой',
-        'Фокус с кошками',
-        'Фокус с бумажным пакетом',
-        'Фокус с картой и монеткой',
-        'Фокус с предсказанием',
-        'Фокус со шкатулкой с кубиками №1',
-        'Фокус с картой и пакетиком',
-        'Фокус с маленькой колодой',
-        'Фокус с картой',
-        'Фокус с резинкой и купюрой',
-        'Фокус с волшебной лампой №1',
-        'Фокус с купюрой в квадрат',
-        'Фокус с купюрой с окошком',
-        'Фокус с волшебными палочками',
-        'Фокус с монеткой №1',
-        'Фокус с резинкой',
-        'Фокус с резинками №1',
-        'Фокус с числовой головоломкой №2',
-        'Фокус с монетками',
-        'Фокус с волшебным футляром №2',
-        'Фокус со шкатулкой с кубиками №2',
-        'Три фокуса с маркером',
-        '↑',
-        '↑',
-        'Фокус с маркером',
-        'Фокус с монеткой и купюрой',
-        'Фокус с монеткой №2',
-        'Фокус с волшебной лампой №2',
-        'Фокус с резинками №2'
+    // === 1. НАБОР "75 лучших фокусов" ===
+    const set75Lessons = [
+      { name: 'Фокус с монеткой и стаканом №1', videoId: '08Kx6GWfuLJ15VVLB9wZRg', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/01.webp` },
+      { name: 'Фокус с монеткой и стаканом №2', videoId: '4FHn2u9avtFz5y5edoaKZn', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/02.webp` },
+      { name: 'Фокус со стаканом', videoId: 'iwYebxbfYgsWiSavnG6f73', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/03.webp` },
+      { name: 'Фокус с монеткой и стаканом №3', videoId: 'k1A2Gu5q9jt1Ergg13B2xN', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/04.webp` },
+      { name: 'Фокус с платком и пластинкой', videoId: 'vB8PZ3bum4EmiCjz1s7p2e', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/05.webp` },
+      { name: 'Фокус с платком и ручкой', videoId: 'nMsgE7FV9egrpvLV842tof', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/06.webp` },
+      { name: 'Фокус с магнитами и стаканом', videoId: '6r3pPfgPBdLiAU1aH1dSE1', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/07.webp` },
+      { name: 'Фокус с шариком и стаканом', videoId: 'tet1Tag2mdzR5PTSaCpdJQ', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/08.webp` },
+      { name: 'Фокус с силиконовой материей и монетой', videoId: '3N8d6wnNCJXAsmfor37Z6C', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/09.webp` },
+      { name: 'Фокус с бумажным стаканчиком №1', videoId: 'eDXSZnJPXwxNWPkbqA1GFo', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/10.webp` },
+      { name: 'Фокус с бумажным стаканчиком №2', videoId: 'rcmNCKZFbdqFFTNroutiYN', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/11.webp` },
+      { name: 'Фокус со стаканом с жидкостью', videoId: 'a381iv6Ly1Q8ZdCrWG1j2Q', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/12.webp` },
+      { name: 'Фокус с воздушным шариком', videoId: 'suppep3Dju2U1ZAeti1Ueh', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/13.webp` },
+      { name: 'Фокус с коробочкой с шариком', videoId: '5NX3JZh6W3trGYAYCcrrwq', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/14.webp` },
+      { name: 'Фокус с бутылкой и осьминогом', videoId: 'osEDVw8PfuNgWAAYFzdDci', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/15.webp` },
+      { name: 'Фокус с трубочками №1', videoId: '2K9LBkR7qGDDnbqf55VQ3P', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/16.webp` },
+      { name: 'Фокус с трубочками №2', videoId: '4qK7Q3Nar6yrCJ4iLhYutr', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/17.webp` },
+      { name: 'Фокус с трубочками №3', videoId: 'sCxSEjrysf1NkoYJXBNqbr', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/18.webp` },
+      { name: 'Фокус с трубочками №4', videoId: 'quCvhgExNKs6ckrRRsp5Xe', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/19.webp` },
+      { name: 'Фокус с трубочками №5', videoId: '3UG5pnU1eeK6qMxmkS4sDk', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/20.webp` },
+      { name: 'Фокус с трубочками №6', videoId: 'xf5gR8ziY4UUxTZrVcPYUW', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/21.webp` },
+      { name: 'Фокус с трубочками №7', videoId: '7D2Pyu2hVPkaQcvfdSDnSn', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/22.webp` },
+      { name: 'Фокус с трубочками №8', videoId: '4nAZBgzGS9fs2uav9ko136', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/23.webp` },
+      { name: 'Фокус с ручкой №1', videoId: '2Ge2y8YGMW6W5hjjv1toy9', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/24.webp` },
+      { name: 'Фокус с ручкой и купюрой №1', videoId: 'oq3Eq1vonpJQ9gt1C7qaS6', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/25.webp` },
+      { name: 'Фокус с волшебной палочкой №1', videoId: 'cUK7UtoqNS6aHZb7MUhKJf', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/26.webp` },
+      { name: 'Фокус с ручкой и купюрой №2', videoId: '4crYByNehEmS3Pw5xydY8U', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/27.webp` },
+      { name: 'Фокус с волшебной тростью', videoId: '0BhyKpcf17f4AXPLSkdGQU', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/28.webp` },
+      { name: 'Фокус с печеньем', videoId: 'hbcu7w4WB2mTi1YTrTwW1A', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/29.webp` },
+      { name: 'Фокус с раскраской', videoId: 'bxQHGnDfqkb89pbu9CCo3H', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/30.webp` },
+      { name: 'Фокус с булавкой со спичкой', videoId: '5ZxzLHp5E5psTbddjLaTNM', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/31.webp` },
+      { name: 'Фокус с монеткой №1', videoId: '0FKMpLiKdNu37ivBzHf8LS', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/32.webp` },
+      { name: 'Фокус с монеткой и леденцом', videoId: 'oBLcgZeiP2txJM9vmENCkG', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/33.webp` },
+      { name: 'Фокус с круглой шкатулкой', videoId: 'xwjShnyz358X56Gmw1b1J2', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/34.webp` },
+      { name: 'Фокус с волшебной палочкой №2', videoId: 'egJeHpt8N8eBgxUH8PpMtx', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/35.webp` },
+      { name: 'Фокус с кувшином', videoId: 'rCnFZyShmj1aw38pQni85Y', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/36.webp` },
+      { name: 'Фокус с прямоугольной шкатулкой', videoId: 'dSiZqEQkN3WFokSwQx2hZ6', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/37.webp` },
+      { name: 'Фокус с пушистиком Байла', videoId: 'tQowRoUYHFa7PVRqWaXPnL', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/38.webp` },
+      { name: 'Фокус с колодой в футляре', videoId: 'caWeZpxqUvnseP15fVYcRh', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/39.webp` },
+      { name: 'Фокус с ручкой №3', videoId: 'dCY6qS39XBACXPNxh64Xhx', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/40.webp` },
+      { name: 'Фокус с крышками', videoId: 'gMCYd4fnqmWLeXYSVRNtbo', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/41.webp` },
+      { name: 'Фокус с верёвкой', videoId: 'dqoeyZ1K93Zc9tFzSBjpND', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/42.webp` },
+      { name: 'Фокус с монеткой №2', videoId: '0grSSEB315A3f2NcQKyXMa', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/43.webp` },
+      { name: 'Фокус с монеткой №3', videoId: '0yXkYxUkvEdzpsz2HKVmex', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/44.webp` },
+      { name: 'Фокус с монеткой и бутылкой', videoId: '5ruZSqV2cyPrNS1JDDhfmb', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/45.webp` },
+      { name: 'Фокус с карточками с животными', videoId: 'ifq98xGLDDuLUTg51iSWWK', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/46.webp` },
+      { name: 'Внимание: отсутствует на диске (Угадаю твою карту)', videoId: '', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/47.webp` },
+      { name: 'Фокус с карточками с десертами', videoId: 'jnYhSV2iDrqRZ58rX1Q5to', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/48.webp` },
+      { name: 'Фокус с карточкой “Дай пять”', videoId: 'jNQZYyMxM6Psv3aEQph7d4', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/49.webp` },
+      { name: 'Фокус с баночкой с кубиком', videoId: '2H1jE5fv7erQmXfrGzmxq2', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/50.webp` },
+      { name: 'Фокус с кубиками', videoId: 'oTZDwfWj7oTBu4yD2JXLZs', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/51.webp` },
+      { name: 'Фокус с листом бумаги', videoId: 'uXQE4Y3SU3Lb7YMnKT3jmT', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/52.webp` },
+      { name: 'Внимание: отсутствует на диске (Угадаю задуманное зрителем, с сообщником)', videoId: '', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/53.webp` },
+      { name: 'Фокус с колодой карт №1', videoId: '22QyaLJACfbBWveFoWPB4W', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/54.webp` },
+      { name: 'Фокус с колодой карт №2', videoId: 'w84xxUQNgY4ahTDtgvR7wt', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/55.webp` },
+      { name: 'Фокус с колодой карт №3', videoId: 'iz78bQfjMiJTzdtAqS5fGt', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/56.webp` },
+      { name: 'Фокус с колодой карт №4', videoId: '84CSAV9U3anYLEjsJUDdpc', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/57.webp` },
+      { name: 'Фокус с колодой карт №5', videoId: 'ekMb5PEruDL7E952AEpZji', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/58.webp` },
+      { name: 'Фокус с колодой карт с человечком', videoId: 'a4JeWQCkqSLTZZMAW818YW', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/59.webp` },
+      { name: 'Фокус с картами №1', videoId: 'g1PFvTYHreDSyj4wbrzMDs', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/60.webp` },
+      { name: 'Фокус с картами №2', videoId: 'qYGrHajXj481fCG1mZfF3d', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/61.webp` },
+      { name: 'Фокус с картами №3', videoId: 'a3csho4mnthBXHoaQJq5oB', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/62.webp` },
+      { name: 'Фокус с картами №4', videoId: 'gDa3MWw7tjjswRHiRnN7wN', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/63.webp` },
+      { name: 'Фокус с использованием рук', videoId: 'hgcwhFh2BpmXqfKKJZaTNv', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/64.webp` },
+      { name: 'Фокус с картами №5', videoId: '7Lgt1C8Bwbg4nFbD9rHfr3', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/65.webp` },
+      { name: 'Фокус с кошельком с картами', videoId: 'ahtEMk8QwNqhrWco8uoTYz', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/66.webp` },
+      { name: 'Фокус с резинками №1', videoId: '7asYipHJNxxQKntnpVWqoa', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/67.webp` },
+      { name: 'Фокус с монеткой и купюрой', videoId: 'eB9NGLCP5dAXARRikmcdEm', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/68.webp` },
+      { name: 'Фокус с резинкой', videoId: 'fLq4jibjivVwxSdXWLAvGp', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/69.webp` },
+      { name: 'Фокус с резинками №2', videoId: 'jD9gcu7q8ueA4WYAmG9ru6', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/70.webp` },
+      { name: 'Фокус с резинкой и купюрой', videoId: 'iBDgbkmsWR5auygAR8Q7jk', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/71.webp` },
+      { name: 'Фокус с купюрой и бумажкой', videoId: '4xKuVdUEDwtxQZju6VzAKv', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/72.webp` },
+      { name: 'Фокус с купюрами', videoId: 'j7b24mjPkfeYggjfxJy27D', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/73.webp` },
+      { name: 'Фокус с карточкой клоуна', videoId: '', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/74.webp` }
     ];
-    const set35Lessons = createLessonsFromNames(set35Names, 'set35');
 
-    // 50 лучших фокусов
-    const set50Names = [
-        'О наборе',
-        'Фокус с волшебной палочкой и горшочком',
-        'Фокус с волшебной палочкой и кубиком',
-        'Фокус с волшебной палочкой №1',
-        'Фокус с числовыми картами',
-        'Фокус с разделителем верёвки',
-        'Фокус с игральным кубиком',
-        'Фокус с баночкой с кубиками',
-        'Фокус с платком и напальчником',
-        'Фокус с картой с леской и спичкой',
-        'Фокус с разноцветными платками',
-        'Фокус с кольцом и цепочкой',
-        'Фокус с кольцом и резинкой',
-        'Фокус с резинкой №1',
-        'Фокус с сердечками №1',
-        'Фокус с сердечками №2',
-        'Фокус с башенкой с шариком',
-        'Фокус с шариком',
-        'Фокус со стаканами и шариками',
-        'Фокус со стаканом №1',
-        'Фокус с двойными картами',
-        'Фокус с резинкой №2',
-        'Фокус с верёвкой №1',
-        'Фокус с листом бумаги',
-        'Фокус с монеткой',
-        'Фокус с напальчником',
-        'Фокус с картой со створкой',
-        'Фокус с верёвкой и спичечным коробком',
-        'Фокус со спичечным коробком №1',
-        'Фокус с сердечками №3',
-        'Фокус со спичечным коробком №2',
-        'Фокус с салфеткой',
-        'Фокус с использованием пальцев',
-        'Фокус со спичками №1',
-        'Фокус со спичками №2',
-        'Фокус с использованием рук',
-        'Фокус с резинками №1',
-        'Фокус с резинкой №3',
-        'Фокус со спичечным коробком и воздушным шариком',
-        'Фокус со стаканом с жидкостью',
-        'Фокус с резинками №2',
-        'Фокус с верёвкой №2',
-        'Фокус с верёвкой №3',
-        'Фокус с картой и купюрой',
-        'Фокус с кольцом',
-        'Фокус со сложенной купюрой',
-        'Фокус с вопросами №1',
-        'Фокус со стаканом №2',
-        'Фокус с купюрой со скрепками',
-        'Фокус с вопросами №2',
-        'Фокус с волшебной палочкой №2'
-    ];
-    const set50Lessons = createLessonsFromNames(set50Names, 'set50');
-
-    // 75 лучших фокусов
-const set75Lessons = [
-  { name: 'Фокус с монеткой и стаканом №1', videoId: '08Kx6GWfuLJ15VVLB9wZRg', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/01.webp` },
-  { name: 'Фокус с монеткой и стаканом №2', videoId: '4FHn2u9avtFz5y5edoaKZn', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/02.webp` },
-  { name: 'Фокус со стаканом', videoId: 'iwYebxbfYgsWiSavnG6f73', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/03.webp` },
-  { name: 'Фокус с монеткой и стаканом №3', videoId: 'k1A2Gu5q9jt1Ergg13B2xN', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/04.webp` },
-  { name: 'Фокус с платком и пластинкой', videoId: 'vB8PZ3bum4EmiCjz1s7p2e', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/05.webp` },
-  { name: 'Фокус с платком и ручкой', videoId: 'nMsgE7FV9egrpvLV842tof', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/06.webp` },
-  { name: 'Фокус с магнитами и стаканом', videoId: '6r3pPfgPBdLiAU1aH1dSE1', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/07.webp` },
-  { name: 'Фокус с шариком и стаканом', videoId: 'tet1Tag2mdzR5PTSaCpdJQ', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/08.webp` },
-  { name: 'Фокус с силиконовой материей и монетой', videoId: '3N8d6wnNCJXAsmfor37Z6C', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/09.webp` },
-  { name: 'Фокус с бумажным стаканчиком №1', videoId: 'eDXSZnJPXwxNWPkbqA1GFo', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/10.webp` },
-  { name: 'Фокус с бумажным стаканчиком №2', videoId: 'rcmNCKZFbdqFFTNroutiYN', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/11.webp` },
-  { name: 'Фокус со стаканом с жидкостью', videoId: 'a381iv6Ly1Q8ZdCrWG1j2Q', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/12.webp` },
-  { name: 'Фокус с воздушным шариком', videoId: 'suppep3Dju2U1ZAeti1Ueh', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/13.webp` },
-  { name: 'Фокус с коробочкой с шариком', videoId: '5NX3JZh6W3trGYAYCcrrwq', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/14.webp` },
-  { name: 'Фокус с бутылкой и осьминогом', videoId: 'osEDVw8PfuNgWAAYFzdDci', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/15.webp` },
-  { name: 'Фокус с трубочками №1', videoId: '2K9LBkR7qGDDnbqf55VQ3P', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/16.webp` },
-  { name: 'Фокус с трубочками №2', videoId: '4qK7Q3Nar6yrCJ4iLhYutr', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/17.webp` },
-  { name: 'Фокус с трубочками №3', videoId: 'sCxSEjrysf1NkoYJXBNqbr', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/18.webp` },
-  { name: 'Фокус с трубочками №4', videoId: 'quCvhgExNKs6ckrRRsp5Xe', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/19.webp` },
-  { name: 'Фокус с трубочками №5', videoId: '3UG5pnU1eeK6qMxmkS4sDk', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/20.webp` },
-  { name: 'Фокус с трубочками №6', videoId: 'xf5gR8ziY4UUxTZrVcPYUW', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/21.webp` },
-  { name: 'Фокус с трубочками №7', videoId: '7D2Pyu2hVPkaQcvfdSDnSn', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/22.webp` },
-
-  // Был "Фокус с трубочками №8" — по твоему комменту УДАЛЁН.
-  // Далее бывший №9 становится №8:
-  { name: 'Фокус с трубочками №8', videoId: '4nAZBgzGS9fs2uav9ko136', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/23.webp` },
-
-  { name: 'Фокус с ручкой №1', videoId: '2Ge2y8YGMW6W5hjjv1toy9', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/24.webp` },
-  { name: 'Фокус с ручкой и купюрой №1', videoId: 'oq3Eq1vonpJQ9gt1C7qaS6', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/25.webp` },
-  { name: 'Фокус с волшебной палочкой №1', videoId: 'cUK7UtoqNS6aHZb7MUhKJf', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/26.webp` },
-  { name: 'Фокус с ручкой и купюрой №2', videoId: '4crYByNehEmS3Pw5xydY8U', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/27.webp` },
-  { name: 'Фокус с волшебной тростью', videoId: '0BhyKpcf17f4AXPLSkdGQU', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/28.webp` },
-  { name: 'Фокус с печеньем', videoId: 'hbcu7w4WB2mTi1YTrTwW1A', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/29.webp` },
-  { name: 'Фокус с раскраской', videoId: 'bxQHGnDfqkb89pbu9CCo3H', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/30.webp` },
-  { name: 'Фокус с булавкой со спичкой', videoId: '5ZxzLHp5E5psTbddjLaTNM', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/31.webp` },
-  { name: 'Фокус с монеткой №1', videoId: '0FKMpLiKdNu37ivBzHf8LS', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/32.webp` },
-  { name: 'Фокус с монеткой и леденцом', videoId: 'oBLcgZeiP2txJM9vmENCkG', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/33.webp` },
-  { name: 'Фокус с круглой шкатулкой', videoId: 'xwjShnyz358X56Gmw1b1J2', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/34.webp` },
-  { name: 'Фокус с волшебной палочкой №2', videoId: 'egJeHpt8N8eBgxUH8PpMtx', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/35.webp` },
-  { name: 'Фокус с кувшином', videoId: 'rCnFZyShmj1aw38pQni85Y', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/36.webp` },
-  { name: 'Фокус с прямоугольной шкатулкой', videoId: 'dSiZqEQkN3WFokSwQx2hZ6', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/37.webp` },
-  { name: 'Фокус с пушистиком Байла', videoId: 'tQowRoUYHFa7PVRqWaXPnL', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/38.webp` },
-  { name: 'Фокус с колодой в футляре', videoId: 'caWeZpxqUvnseP15fVYcRh', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/39.webp` },
-  { name: 'Фокус с ручкой №3', videoId: 'dCY6qS39XBACXPNxh64Xhx', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/40.webp` },
-  { name: 'Фокус с крышками', videoId: 'gMCYd4fnqmWLeXYSVRNtbo', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/41.webp` },
-  { name: 'Фокус с верёвкой', videoId: 'dqoeyZ1K93Zc9tFzSBjpND', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/42.webp` },
-  { name: 'Фокус с монеткой №2', videoId: '0grSSEB315A3f2NcQKyXMa', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/43.webp` },
-  { name: 'Фокус с монеткой №3', videoId: '0yXkYxUkvEdzpsz2HKVmex', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/44.webp` },
-  { name: 'Фокус с монеткой и бутылкой', videoId: '5ruZSqV2cyPrNS1JDDhfmb', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/45.webp` },
-  { name: 'Фокус с карточками с животными', videoId: 'ifq98xGLDDuLUTg51iSWWK', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/46.webp` },
-
-  // Нет видео на диске — оставляем пустой videoId
-  { name: 'Внимание: отсутствует на диске (Угадаю твою карту)', videoId: '', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/47.webp` },
-
-  { name: 'Фокус с карточками с десертами', videoId: 'jnYhSV2iDrqRZ58rX1Q5to', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/48.webp` },
-  { name: 'Фокус с карточкой “Дай пять”', videoId: 'jNQZYyMxM6Psv3aEQph7d4', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/49.webp` },
-  { name: 'Фокус с баночкой с кубиком', videoId: '2H1jE5fv7erQmXfrGzmxq2', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/50.webp` },
-  { name: 'Фокус с кубиками', videoId: 'oTZDwfWj7oTBu4yD2JXLZs', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/51.webp` },
-  { name: 'Фокус с листом бумаги', videoId: 'uXQE4Y3SU3Lb7YMnKT3jmT', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/52.webp` },
-
-  // Второй отсутствующий
-  { name: 'Внимание: отсутствует на диске (Угадаю задуманное зрителем, с сообщником)', videoId: '', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/53.webp` },
-
-  { name: 'Фокус с колодой карт №1', videoId: '22QyaLJACfbBWveFoWPB4W', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/54.webp` },
-  { name: 'Фокус с колодой карт №2', videoId: 'w84xxUQNgY4ahTDtgvR7wt', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/55.webp` },
-  { name: 'Фокус с колодой карт №3', videoId: 'iz78bQfjMiJTzdtAqS5fGt', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/56.webp` },
-  { name: 'Фокус с колодой карт №4', videoId: '84CSAV9U3anYLEjsJUDdpc', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/57.webp` },
-  { name: 'Фокус с колодой карт №5', videoId: 'ekMb5PEruDL7E952AEpZji', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/58.webp` },
-  { name: 'Фокус с колодой карт с человечком', videoId: 'a4JeWQCkqSLTZZMAW818YW', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/59.webp` },
-  { name: 'Фокус с картами №1', videoId: 'g1PFvTYHreDSyj4wbrzMDs', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/60.webp` },
-  { name: 'Фокус с картами №2', videoId: 'qYGrHajXj481fCG1mZfF3d', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/61.webp` },
-  { name: 'Фокус с картами №3', videoId: 'a3csho4mnthBXHoaQJq5oB', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/62.webp` },
-  { name: 'Фокус с картами №4', videoId: 'gDa3MWw7tjjswRHiRnN7wN', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/63.webp` },
-  { name: 'Фокус с использованием рук', videoId: 'hgcwhFh2BpmXqfKKJZaTNv', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/64.webp` },
-  { name: 'Фокус с картами №5', videoId: '7Lgt1C8Bwbg4nFbD9rHfr3', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/65.webp` },
-  { name: 'Фокус с кошельком с картами', videoId: 'ahtEMk8QwNqhrWco8uoTYz', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/66.webp` },
-  { name: 'Фокус с резинками №1', videoId: '7asYipHJNxxQKntnpVWqoa', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/67.webp` },
-  { name: 'Фокус с монеткой и купюрой', videoId: 'eB9NGLCP5dAXARRikmcdEm', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/68.webp` },
-  { name: 'Фокус с резинкой', videoId: 'fLq4jibjivVwxSdXWLAvGp', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/69.webp` },
-  { name: 'Фокус с резинками №2', videoId: 'jD9gcu7q8ueA4WYAmG9ru6', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/70.webp` },
-  { name: 'Фокус с резинкой и купюрой', videoId: 'iBDgbkmsWR5auygAR8Q7jk', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/71.webp` },
-  { name: 'Фокус с купюрой и бумажкой', videoId: '4xKuVdUEDwtxQZju6VzAKv', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/72.webp` },
-  { name: 'Фокус с купюрами', videoId: 'j7b24mjPkfeYggjfxJy27D', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/73.webp` },
-
-  // пока без видео — дополним, когда пришлёшь
-  { name: 'Фокус с карточкой клоуна', videoId: '', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/74.webp` },
-];
-    const set75Lessons = createLessonsFromNames(set75Names, 'set75');
-
-    // 10 взрывных (зелёный)
-    const greenNames = [
-        'Фокус с купюрой со скрепками',
-        'Фокус с баночкой с кубиками',
-        'Фокус с разделителем верёвки',
-        'Фокус с разноцветными платками',
-        'Фокус с карточкой клоуна',
-        'Фокус с резинкой №1',
-        'Фокус с резинками',
-        'Фокус с резинкой №2',
-        'Фокус с резинкой №3',
-        'Фокус с резинкой и купюрой'
-    ];
-    const greenLessons = createLessonsFromNames(greenNames, 'set_green');
-
-    // 10 взрывных (синий)
-    const blueNames = [
-        'Фокус с печеньем',
-        'Фокус с карточкой сердечка',
-        'Фокус с волшебной тростью',
-        'Фокус со стаканами и шариками',
-        'Фокус с картой с леской и спичкой',
-        'Фокус с резинкой №1',
-        'Фокус с резинкой №2',
-        'Фокус с резинкой №3',
-        'Фокус с резинками (заменить видео)',
-        'Фокус с использованием рук (заменить видео)'
-    ];
-    const blueLessons = createLessonsFromNames(blueNames, 'set_blue');
-
-    // 10 взрывных (фиолетовый)
-    const purpleNames = [
-        'Фокус с купюрой и бумажкой',
-        'Фокус с двойными картами',
-        'Фокус с платком и напальчником',
-        'Фокус с башенкой с шариком',
-        'Фокус с колодой в футляре',
-        'Фокус с карточкой “Дай пять”',
-        'Фокус с резинкой №1',
-        'Фокус с резинкой №2',
-        'Фокус с резинкой №3',
-        'Фокус с использованием рук'
-    ];
-    const purpleLessons = createLessonsFromNames(purpleNames, 'set_purple');
-
-    // 10 взрывных (красный)
-    const redNames = [
-        'Фокус с поролоновыми шариками и кубиком',
-        'Фокус с кольцом и цепочкой',
-        'Фокус с баночкой с кубиком',
-        'Фокус с числовыми картами',
-        'Фокус с кошельком с картами',
-        'Фокус с кольцом и резинкой',
-        'Фокус с резинками №1',
-        'Фокус с выбором предмета',
-        'Фокус с резинками №2',
-        'Фокус с резинками №3'
-    ];
-    const redLessons = createLessonsFromNames(redNames, 'set_red');
+    // Остальные наборы пока пустые — потом заполним
+    const set50Lessons = createLessonsFromNames([], 'set50');
+    const set35Lessons = createLessonsFromNames([], 'set35');
+    const greenLessons = createLessonsFromNames([], 'set_green');
+    const blueLessons = createLessonsFromNames([], 'set_blue');
+    const purpleLessons = createLessonsFromNames([], 'set_purple');
+    const redLessons = createLessonsFromNames([], 'set_red');
 
     const courses = {
-        set_35: { title: '35 лучших фокусов', lessons: set35Lessons },
-        set_50: { title: '50 лучших фокусов', lessons: set50Lessons },
         set_75: { title: '75 лучших фокусов', lessons: set75Lessons },
+        set_50: { title: '50 лучших фокусов', lessons: set50Lessons },
+        set_35: { title: '35 лучших фокусов', lessons: set35Lessons },
         set_green: { title: '10 взрывных фокусов (зелёный)', lessons: greenLessons },
         set_blue: { title: '10 взрывных фокусов (синий)', lessons: blueLessons },
         set_purple: { title: '10 взрывных фокусов (фиолетовый)', lessons: purpleLessons },
         set_red: { title: '10 взрывных фокусов (красный)', lessons: redLessons }
     };
 
-    // === 2. ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ===
+    // === 2. ГЛОБАЛ ===
     let courseSelectionPage, lessonListView, videoPlayerView, lessonList;
     let currentCourseId = null;
     let bgMusic, clickSound, isMusicPlaying = false, isSoundEnabled = true;
@@ -920,6 +764,7 @@ const set75Lessons = [
         registrationForm.addEventListener('submit', handleRegistrationSubmit);
 
         setupTelegramWebAppEvents();
+        setupCarouselWheelScroll();
     }
 
     // === 3. АУДИО ===
@@ -972,6 +817,19 @@ const set75Lessons = [
         }
     }
 
+    // Горизонтальный скролл карусели на ПК колесиком мыши
+    function setupCarouselWheelScroll() {
+        const wrapper = document.getElementById('course-carousel-wrapper');
+        if (!wrapper) return;
+        wrapper.addEventListener('wheel', (e) => {
+            // если крутим вертикально — скроллим горизонтально
+            if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+                e.preventDefault();
+                wrapper.scrollLeft += e.deltaY;
+            }
+        }, { passive: false });
+    }
+
     // === 4. НАВИГАЦИЯ ===
     function startApp() {
         document.body.addEventListener('click', () => {
@@ -999,6 +857,25 @@ const set75Lessons = [
         document.getElementById('placeholder-course-name').textContent = course.title;
 
         lessonList.innerHTML = '';
+
+        if (!course.lessons.length) {
+            // если уроков нет — показать заглушку
+            document.getElementById('lessons-placeholder').innerHTML = `
+                <span class="placeholder-icon">⏳</span>
+                <p style="font-size:1.0em;font-weight:700;margin-bottom:4px;">
+                    Видео-уроки для набора "${course.title}" в процессе загрузки.
+                </p>
+                <p style="font-size:0.9em;">Скоро здесь появятся ролики.</p>
+            `;
+        } else {
+            document.getElementById('lessons-placeholder').innerHTML = `
+                <span class="placeholder-icon">🎬</span>
+                <p style="font-size:1.0em;font-weight:700;margin-bottom:4px;">
+                    Выберите урок ниже, чтобы посмотреть видео.
+                </p>
+            `;
+        }
+
         course.lessons.forEach((lesson, index) => {
             const li = document.createElement('li');
             li.className = 'lesson-item';
@@ -1024,12 +901,9 @@ const set75Lessons = [
         clickedElement.classList.add('active');
 
         document.getElementById('current-lesson-name').textContent = lesson.name;
-
-        // Превью
         videoThumbnailLarge.src = lesson.imageUrl || '';
         videoThumbnailLarge.style.opacity = 1;
 
-        // Если videoId заполнен — показываем видео, иначе только заглушку
         if (lesson.videoId && lesson.videoId.trim() !== '') {
             kinescopePlayer.src = `https://kinescope.io/embed/${lesson.videoId}`;
             noVideoWarning.classList.add('hidden');
@@ -1053,8 +927,8 @@ const set75Lessons = [
         resumeMusicAfterVideo();
 
         if (currentCourseId) {
-            lessonListView.classList.remove('hidden');
             videoPlayerView.classList.add('hidden');
+            lessonListView.classList.remove('hidden');
             lessonListView.scrollIntoView({ behavior: 'smooth' });
         } else {
             showCourseSelection();
@@ -1063,7 +937,9 @@ const set75Lessons = [
 
     // === 5. РЕГИСТРАЦИЯ ===
     function getTelegramIdFromContext() {
-        if (window.Telegram && window.Telegram.WebApp && Telegram.WebApp.initDataUnsafe && Telegram.WebApp.initDataUnsafe.user) {
+        if (window.Telegram && window.Telegram.WebApp &&
+            Telegram.WebApp.initDataUnsafe &&
+            Telegram.WebApp.initDataUnsafe.user) {
             return Telegram.WebApp.initDataUnsafe.user.id.toString();
         }
         const urlParams = new URLSearchParams(window.location.search);
@@ -1079,7 +955,8 @@ const set75Lessons = [
             hideRegistrationModal();
         } else {
             if (tgId && tgId !== 'null' && tgId !== 'undefined') {
-                document.getElementById('reg-tg-id').value = tgId;
+                const tgInput = document.getElementById('reg-tg-id');
+                if (tgInput) tgInput.value = tgId;
                 showRegistrationModal(true);
             } else {
                 showRegistrationModal(false);
@@ -1120,7 +997,8 @@ const set75Lessons = [
 
         const tgId = getTelegramIdFromContext();
         if (tgId && tgId !== 'null' && tgId !== 'undefined') {
-            document.getElementById('reg-tg-id').value = tgId;
+            const tgInput = document.getElementById('reg-tg-id');
+            if (tgInput) tgInput.value = tgId;
         }
     }
 
