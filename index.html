@@ -437,7 +437,6 @@
             margin-top: 10px;
         }
 
-        /* Подсказка для ПК/мобилы */
         @media (min-width: 769px) {
             #swipe-hint { font-size: 0.8em; opacity: 0.8; }
         }
@@ -469,7 +468,7 @@
                 <div class="course-card" data-id="set_50" data-type="big">
                     <img src="images/set_new_50.png" alt="50 лучших фокусов" class="card-image">
                     <h3>50 ЛУЧШИХ ФОКУСОВ</h3>
-                    <p>Сильная база и топовые трюки на каждый день.</p>
+                    <p>Сильная база и топовые трюки. Вступление — номер 0.</p>
                 </div>
                 <div class="course-card" data-id="set_35" data-type="big">
                     <img src="images/set_new_35.png" alt="35 лучших фокусов" class="card-image">
@@ -574,7 +573,7 @@
             <div id="policy-full-view" class="hidden">
                 <p><b>Дата публикации действующей редакции: 1 сентября 2025 года</b></p>
                 <div class="policy-text-container">
-                    <!-- сюда можешь вставить полный текст политики как в первом сайте -->
+                    <!-- Вставь сюда полный текст политики как в основном сайте -->
                     <p>1. Общие положения, стороны, цель документа...</p>
                 </div>
                 <button id="agree-final-btn" class="form-button">Согласиться с Политикой</button>
@@ -623,7 +622,6 @@
     const USER_STORAGE_KEY = 'magic_course_user_registered_hat';
     const TG_ID_STORAGE_KEY = 'magic_course_tg_id_hat';
 
-    // Вспомогательная функция болванок
     function createLessonsFromNames(names, folder) {
         return names.map((name, index) => ({
             name,
@@ -711,8 +709,124 @@
       { name: 'Фокус с карточкой клоуна', videoId: '', duration: '', imageUrl: `${IMAGE_BASE_URL}set75/74.webp` }
     ];
 
-    // Остальные наборы пока пустые — потом заполним
-    const set50Lessons = createLessonsFromNames([], 'set50');
+    // === 2. НАБОР "50 лучших фокусов" (0 — вступление) ===
+    const set50Names = [
+        "О наборе",
+        "Фокус с волшебной палочкой и горшочком",
+        "Фокус с волшебной палочкой и кубиком",
+        "Фокус с волшебной палочкой №1",
+        "Фокус с числовыми картами",
+        "Фокус с разделителем верёвки",
+        "Фокус с игральным кубиком",
+        "Фокус с баночкой с кубиками",
+        "Фокус с платком и напальчником",
+        "Фокус с картой с леской и спичкой",
+        "Фокус с разноцветными платками",
+        "Фокус с кольцом и цепочкой",
+        "Фокус с кольцом и резинкой",
+        "Фокус с резинкой №1",
+        "Фокус с сердечками №1",
+        "Фокус с сердечками №2",
+        "Фокус с башенкой с шариком",
+        "Фокус с шариком",
+        "Фокус со стаканами и шариками",
+        "Фокус со стаканом №1",
+        "Фокус с двойными картами",
+        "Фокус с резинкой №2",
+        "Фокус с верёвкой №1",
+        "Фокус с листом бумаги",
+        "Фокус с монеткой",
+        "Фокус с напальчником",
+        "Фокус с картой со створкой",
+        "Фокус с верёвкой и спичечным коробком",
+        "Фокус со спичечным коробком №1",
+        "Фокус с сердечками №3",
+        "Фокус со спичечным коробком №2",
+        "Фокус с салфеткой",
+        "Фокус с использованием пальцев",
+        "Фокус со спичками №1",
+        "Фокус со спичками №2",
+        "Фокус с использованием рук",
+        "Фокус с резинками №1",
+        "Фокус с резинкой №3",
+        "Фокус со спичечным коробком и воздушным шариком",
+        "Фокус со стаканом с жидкостью",
+        "Фокус с резинками №2",
+        "Фокус с верёвкой №2",
+        "Фокус с верёвкой №3",
+        "Фокус с картой и купюрой",
+        "Фокус с кольцом",
+        "Фокус со сложенной купюрой",
+        "Фокус с вопросами №1",
+        "Фокус со стаканом №2",
+        "Фокус с купюрой со скрепками",
+        "Фокус с вопросами №2",
+        "Фокус с волшебной палочкой №2"
+    ];
+
+    const set50Ids = [
+        "3ToVuRrRbETNc9CS8dK6PN",
+        "bASv2KDXm3exPSJhXijGv7",
+        "k7LVHDdYbLP6nJHeE78jZZ",
+        "gBuMcScL9G2Tctsq4nV53o",
+        "kQRzENqLzFHbN9zoSkELur",
+        "wzotde87eg2SCza8ifUMTV",
+        "8PiozEkZ2ShCxqhyMkGTC6",
+        "sCuBGxqbufwwyfyTR875v1",
+        "n16yQfgApriXzJve1fJTGh",
+        "6AMFukucjvC3pGK8iyH4Et",
+        "tyW2R4vq5BzFFMy95zdDM3",
+        "5NdmGkdYeLpa5FT5X64bn8",
+        "nJNkwpMN2QY6twvXmLwcBD",
+        "2Fu99zt3jN8X2opw8ZXuAr",
+        "8SFRsCyg5EpppTctLvPHR6",
+        "vNP61NmohuHVddHan6cdUj",
+        "3KN6yrnnmiotcqPKjy6c7C",
+        "vehKRwE4NzTi4yaMJkxcSv",
+        "qTTKJXx4oFuhbKuZAeKnDq",
+        "jaj5LtYzdQZa3Q9XBg6ydm",
+        "o4KKfSfM3ojWhJbGqZGHQH",
+        "jLMFoYJxp9oskaD77C8jWP",
+        "kAPviofbQ9ZZ54HdJF9Wtw",
+        "7bjn4Vj2Rc4qbHCF86ut78",
+        "3j2wei9949NT9fWMUqrNKh",
+        "2xBJbT1mLo9ZdYx1THsPpb",
+        "7PnVtftEgskF1LXb7b1YPp",
+        "8JeakD88Y9SCkgWRkRrryW",
+        "g4YY8iCjqRUwp9RYzBnJCj",
+        "eYiXB7XWaSahT47YvaBAJS",
+        "c69d54HhkmgjSrgyXtpCTE",
+        "hpQTFLA3tgvfiXsN9K7AYK",
+        "ciAQ7xRb8hS9DXHKvgFCKc",
+        "m8YVCXwW2ei7fUxZ5cZ4c2",
+        "rQecge353H6iCLYhtfdP1b",
+        "a4RGrJXp1bdPZhqBwMUErz",
+        "qRDCo5oqBcAbE33GegxQR7",
+        "74Kn1XNY1tK3Qc3gotYVbx",
+        "fVrETbquXomMmrf6DGz9xc",
+        "u5TLFJpLzzGtxfBbZBo9ey",
+        "aBWpSUmQvP9gqwf1UorosR",
+        "wtMN3Q3zu5AFg5f93aPtyk",
+        "wzNwHj9nqZ3XYwh4PgNk3y",
+        "wZxGXN8MVxRkM3qtfMmdw5",
+        "pQqNbBfFoxjRptWxZWTuKn",
+        "iNE6ZoZkS9X8PQajd9cRdb",
+        "hJvSAUQLGSLS5QiAwLr4P8",
+        "pb3qbXi6CxM4CYCLEA5Qxn",
+        "kkem4qCQPo8tfSkE2BSD3u",
+        "6dPvUz1Br9NzPJB8rSfzfn",
+        "fdnxr9H6yFkHK8SmuKs35X"
+    ];
+
+    const set50Lessons = set50Names.map((name, index) => ({
+        name,
+        duration: '',
+        videoId: set50Ids[index] || '',
+        // 0 -> 00.webp, 1 -> 01.webp и т.д.
+        imageUrl: `${IMAGE_BASE_URL}set50/${String(index).padStart(2, '0')}.webp`
+    }));
+
+    // Остальные наборы пока пустые — добавишь по готовности
     const set35Lessons = createLessonsFromNames([], 'set35');
     const greenLessons = createLessonsFromNames([], 'set_green');
     const blueLessons = createLessonsFromNames([], 'set_blue');
@@ -720,16 +834,16 @@
     const redLessons = createLessonsFromNames([], 'set_red');
 
     const courses = {
-        set_75: { title: '75 лучших фокусов', lessons: set75Lessons },
-        set_50: { title: '50 лучших фокусов', lessons: set50Lessons },
-        set_35: { title: '35 лучших фокусов', lessons: set35Lessons },
-        set_green: { title: '10 взрывных фокусов (зелёный)', lessons: greenLessons },
-        set_blue: { title: '10 взрывных фокусов (синий)', lessons: blueLessons },
-        set_purple: { title: '10 взрывных фокусов (фиолетовый)', lessons: purpleLessons },
-        set_red: { title: '10 взрывных фокусов (красный)', lessons: redLessons }
+        set_75:     { title: '75 лучших фокусов',             lessons: set75Lessons, indexOffset: 1 },
+        set_50:     { title: '50 лучших фокусов',             lessons: set50Lessons, indexOffset: 0 }, // тут с нуля
+        set_35:     { title: '35 лучших фокусов',             lessons: set35Lessons, indexOffset: 1 },
+        set_green:  { title: '10 взрывных фокусов (зелёный)', lessons: greenLessons, indexOffset: 1 },
+        set_blue:   { title: '10 взрывных фокусов (синий)',   lessons: blueLessons,  indexOffset: 1 },
+        set_purple: { title: '10 взрывных фокусов (фиолетовый)', lessons: purpleLessons, indexOffset: 1 },
+        set_red:    { title: '10 взрывных фокусов (красный)', lessons: redLessons,   indexOffset: 1 }
     };
 
-    // === 2. ГЛОБАЛ ===
+    // === 3. ГЛОБАЛ ===
     let courseSelectionPage, lessonListView, videoPlayerView, lessonList;
     let currentCourseId = null;
     let bgMusic, clickSound, isMusicPlaying = false, isSoundEnabled = true;
@@ -767,7 +881,7 @@
         setupCarouselWheelScroll();
     }
 
-    // === 3. АУДИО ===
+    // === 4. АУДИО ===
     function playClickSound() {
         if (isSoundEnabled && clickSound) {
             clickSound.currentTime = 0;
@@ -817,12 +931,11 @@
         }
     }
 
-    // Горизонтальный скролл карусели на ПК колесиком мыши
+    // === 5. КАРУСЕЛЬ: колесо мыши -> горизонтальный скролл ===
     function setupCarouselWheelScroll() {
         const wrapper = document.getElementById('course-carousel-wrapper');
         if (!wrapper) return;
         wrapper.addEventListener('wheel', (e) => {
-            // если крутим вертикально — скроллим горизонтально
             if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
                 e.preventDefault();
                 wrapper.scrollLeft += e.deltaY;
@@ -830,7 +943,7 @@
         }, { passive: false });
     }
 
-    // === 4. НАВИГАЦИЯ ===
+    // === 6. НАВИГАЦИЯ ===
     function startApp() {
         document.body.addEventListener('click', () => {
             if (!isMusicPlaying && bgMusic.paused) toggleMusic();
@@ -853,14 +966,15 @@
         const course = courses[courseId];
         if (!course) return;
 
+        const placeholderCourseName = document.getElementById('placeholder-course-name');
         document.getElementById('lesson-list-title').textContent = `Набор: ${course.title}`;
-        document.getElementById('placeholder-course-name').textContent = course.title;
+        if (placeholderCourseName) placeholderCourseName.textContent = course.title;
 
+        const lessonsPlaceholder = document.getElementById('lessons-placeholder');
         lessonList.innerHTML = '';
 
         if (!course.lessons.length) {
-            // если уроков нет — показать заглушку
-            document.getElementById('lessons-placeholder').innerHTML = `
+            lessonsPlaceholder.innerHTML = `
                 <span class="placeholder-icon">⏳</span>
                 <p style="font-size:1.0em;font-weight:700;margin-bottom:4px;">
                     Видео-уроки для набора "${course.title}" в процессе загрузки.
@@ -868,7 +982,7 @@
                 <p style="font-size:0.9em;">Скоро здесь появятся ролики.</p>
             `;
         } else {
-            document.getElementById('lessons-placeholder').innerHTML = `
+            lessonsPlaceholder.innerHTML = `
                 <span class="placeholder-icon">🎬</span>
                 <p style="font-size:1.0em;font-weight:700;margin-bottom:4px;">
                     Выберите урок ниже, чтобы посмотреть видео.
@@ -876,12 +990,15 @@
             `;
         }
 
+        const indexOffset = (typeof course.indexOffset === 'number') ? course.indexOffset : 1;
+
         course.lessons.forEach((lesson, index) => {
+            const displayIndex = index + indexOffset;
             const li = document.createElement('li');
             li.className = 'lesson-item';
             li.innerHTML = `
-                <img src="${lesson.imageUrl}" alt="Урок ${index + 1}" class="lesson-item-preview">
-                <span class="title">${index + 1}. ${lesson.name}</span>
+                <img src="${lesson.imageUrl}" alt="Урок ${displayIndex}" class="lesson-item-preview">
+                <span class="title">${displayIndex}. ${lesson.name}</span>
             `;
             li.addEventListener('click', () => playLesson(lesson, li));
             lessonList.appendChild(li);
@@ -935,7 +1052,7 @@
         }
     }
 
-    // === 5. РЕГИСТРАЦИЯ ===
+    // === 7. РЕГИСТРАЦИЯ ===
     function getTelegramIdFromContext() {
         if (window.Telegram && window.Telegram.WebApp &&
             Telegram.WebApp.initDataUnsafe &&
@@ -1049,7 +1166,7 @@
         }
     }
 
-    // === 6. ИНИЦИАЛИЗАЦИЯ ===
+    // === 8. ИНИЦИАЛИЗАЦИЯ ===
     document.addEventListener('DOMContentLoaded', () => {
         initializeDOMElements();
 
