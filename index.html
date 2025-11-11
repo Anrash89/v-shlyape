@@ -260,10 +260,6 @@
             font-size: 0.92em;
         }
 
-        .lesson-item span.duration {
-            display: none;
-        }
-
         /* --- ВИДЕО-ПЛЕЕР 16:9 --- */
         #video-player-view {
             text-align: center;
@@ -293,7 +289,7 @@
             border-radius: 12px;
             overflow: hidden;
             position: relative;
-            padding-top: 56.25%; /* 16:9 */
+            padding-top: 56.25%;
             width: 100%;
             background: #000;
         }
@@ -470,10 +466,10 @@
                     <h3>50 ЛУЧШИХ ФОКУСОВ</h3>
                     <p>Сильная база и топовые трюки. Вступление — номер 0.</p>
                 </div>
-                <div class="course-card" data-id="set_35" data-type="big">
-                    <img src="images/set_new_35.png" alt="35 лучших фокусов" class="card-image">
-                    <h3>35 ЛУЧШИХ ФОКУСОВ</h3>
-                    <p>Отборные эффекты для быстрых и ярких выступлений.</p>
+                <div class="course-card" data-id="set_25_10" data-type="big">
+                    <img src="images/set_new_35.png" alt="25+10 лучших фокусов" class="card-image">
+                    <h3>25+10 ЛУЧШИХ ФОКУСОВ</h3>
+                    <p>25 базовых + 10 дополнительных. Уроки 28–30 объединены.</p>
                 </div>
 
                 <div class="course-card" data-id="set_green" data-type="small">
@@ -573,7 +569,6 @@
             <div id="policy-full-view" class="hidden">
                 <p><b>Дата публикации действующей редакции: 1 сентября 2025 года</b></p>
                 <div class="policy-text-container">
-                    <!-- Вставь сюда полный текст политики как в основном сайте -->
                     <p>1. Общие положения, стороны, цель документа...</p>
                 </div>
                 <button id="agree-final-btn" class="form-button">Согласиться с Политикой</button>
@@ -822,28 +817,72 @@
         name,
         duration: '',
         videoId: set50Ids[index] || '',
-        // 0 -> 00.webp, 1 -> 01.webp и т.д.
         imageUrl: `${IMAGE_BASE_URL}set50/${String(index).padStart(2, '0')}.webp`
     }));
 
-    // Остальные наборы пока пустые — добавишь по готовности
-    const set35Lessons = createLessonsFromNames([], 'set35');
-    const greenLessons = createLessonsFromNames([], 'set_green');
-    const blueLessons = createLessonsFromNames([], 'set_blue');
+    // === 3. НАБОР "25+10" ===
+    // Первые 25 — по одному видео,
+    // затем урок "Фокусы 28–30 (3 в 1)",
+    // затем уроки 31,32,33,34,35.
+    const set25_10Lessons = [
+        { name: 'Фокус №1',  videoId: '34tV6z86qCU9mKcK1KhtDi', imageUrl: `${IMAGE_BASE_URL}set25_10/01.webp`, duration: '' },
+        { name: 'Фокус №2',  videoId: '3GcEheiYDUBStRvxNLRkYy', imageUrl: `${IMAGE_BASE_URL}set25_10/02.webp`, duration: '' },
+        { name: 'Фокус №3',  videoId: 'fkG8XqCMHF4MVHQRJzmQdo', imageUrl: `${IMAGE_BASE_URL}set25_10/03.webp`, duration: '' },
+        { name: 'Фокус №4',  videoId: 'oRZAQoNV97ZvSgUmAkDx5W', imageUrl: `${IMAGE_BASE_URL}set25_10/04.webp`, duration: '' },
+        { name: 'Фокус №5',  videoId: 'dAKBfrkpptfCKithMVbwt9', imageUrl: `${IMAGE_BASE_URL}set25_10/05.webp`, duration: '' },
+        { name: 'Фокус №6',  videoId: 'ty4PuJ2GNbLtT8usHtbzu3', imageUrl: `${IMAGE_BASE_URL}set25_10/06.webp`, duration: '' },
+        { name: 'Фокус №7',  videoId: 'f1mu6EvbPm4qYvVw9KkHEJ', imageUrl: `${IMAGE_BASE_URL}set25_10/07.webp`, duration: '' },
+        { name: 'Фокус №8',  videoId: 'mda93j9aBszrqeEGQ7SBTG', imageUrl: `${IMAGE_BASE_URL}set25_10/08.webp`, duration: '' },
+        { name: 'Фокус №9',  videoId: '7z2BMMbBa3XrzUbZXN2hTz', imageUrl: `${IMAGE_BASE_URL}set25_10/09.webp`, duration: '' },
+        { name: 'Фокус №10', videoId: 'tyWBs4cUyMA8hFHeSwJHBz', imageUrl: `${IMAGE_BASE_URL}set25_10/10.webp`, duration: '' },
+        { name: 'Фокус №11', videoId: 'aNczHHhtrWo3cegNaS5jv6', imageUrl: `${IMAGE_BASE_URL}set25_10/11.webp`, duration: '' },
+        { name: 'Фокус №12', videoId: 'v6LMxonzmE1kWYmaYZDsNc', imageUrl: `${IMAGE_BASE_URL}set25_10/12.webp`, duration: '' },
+        { name: 'Фокус №13', videoId: 'mrJ8eqBZyyvXkWtzkozRXp', imageUrl: `${IMAGE_BASE_URL}set25_10/13.webp`, duration: '' },
+        { name: 'Фокус №14', videoId: 'uNwQewL8g1pYE9sXptx5sF', imageUrl: `${IMAGE_BASE_URL}set25_10/14.webp`, duration: '' },
+        { name: 'Фокус №15', videoId: '5CUxuJE9wdn63oRxFa2dsf', imageUrl: `${IMAGE_BASE_URL}set25_10/15.webp`, duration: '' },
+        { name: 'Фокус №16', videoId: 'c29vN8wTgVwCyUpe5Qqvti', imageUrl: `${IMAGE_BASE_URL}set25_10/16.webp`, duration: '' },
+        { name: 'Фокус №17', videoId: '8Y4g2XPab6WYNo8dDoFCzn', imageUrl: `${IMAGE_BASE_URL}set25_10/17.webp`, duration: '' },
+        { name: 'Фокус №18', videoId: 'bEg4ZMe7rCrd3zY8Y6UsiW', imageUrl: `${IMAGE_BASE_URL}set25_10/18.webp`, duration: '' },
+        { name: 'Фокус №19', videoId: 't4Zio7LxGhULSZv8Ld566C', imageUrl: `${IMAGE_BASE_URL}set25_10/19.webp`, duration: '' },
+        { name: 'Фокус №20', videoId: '6nMfZ2e9NCSRnAMy4SaPEJ', imageUrl: `${IMAGE_BASE_URL}set25_10/20.webp`, duration: '' },
+        { name: 'Фокус №21', videoId: '0r6ygY6yN7s3tTcRARimcR', imageUrl: `${IMAGE_BASE_URL}set25_10/21.webp`, duration: '' },
+        { name: 'Фокус №22', videoId: 'rt4VxDenV4Vyg38DBf6gnz', imageUrl: `${IMAGE_BASE_URL}set25_10/22.webp`, duration: '' },
+        { name: 'Фокус №23', videoId: 'hzLErEou6ULS8ZNzWnmsdf', imageUrl: `${IMAGE_BASE_URL}set25_10/23.webp`, duration: '' },
+        { name: 'Фокус №24', videoId: '8DTBFrgDjYGLYUPVUv1z6o', imageUrl: `${IMAGE_BASE_URL}set25_10/24.webp`, duration: '' },
+        { name: 'Фокус №25', videoId: 'm4XHmnR3NPrpCDFTFGY5rX', imageUrl: `${IMAGE_BASE_URL}set25_10/25.webp`, duration: '' },
+
+        // Объединённый урок для 28,29,30:
+        {
+            name: 'Фокусы 28, 29 и 30 (3 в 1)',
+            videoId: '7jktYotokxnrCt5QCTYRhx',
+            imageUrl: `${IMAGE_BASE_URL}set25_10/26.webp`,
+            duration: ''
+        },
+        // Дальше 31–35:
+        { name: 'Фокус №31', videoId: 'bHwiVbeR3k3WVNUtNvU2UC', imageUrl: `${IMAGE_BASE_URL}set25_10/27.webp`, duration: '' },
+        { name: 'Фокус №32', videoId: 'nPNUvsJs2krXV1cYZdfnsC', imageUrl: `${IMAGE_BASE_URL}set25_10/28.webp`, duration: '' },
+        { name: 'Фокус №33', videoId: 'bxjDBwydRLfhGKd8uJjXyk', imageUrl: `${IMAGE_BASE_URL}set25_10/29.webp`, duration: '' },
+        { name: 'Фокус №34', videoId: 'iwGCSgU4GggeP9HaUNxEiy', imageUrl: `${IMAGE_BASE_URL}set25_10/30.webp`, duration: '' },
+        { name: 'Фокус №35', videoId: 'jRQ4LcejoUhe2uhRJe7tQL', imageUrl: `${IMAGE_BASE_URL}set25_10/31.webp`, duration: '' }
+    ];
+
+    // Остальные наборы — заглушки под будущее наполнение
+    const greenLessons  = createLessonsFromNames([], 'set_green');
+    const blueLessons   = createLessonsFromNames([], 'set_blue');
     const purpleLessons = createLessonsFromNames([], 'set_purple');
-    const redLessons = createLessonsFromNames([], 'set_red');
+    const redLessons    = createLessonsFromNames([], 'set_red');
 
     const courses = {
-        set_75:     { title: '75 лучших фокусов',             lessons: set75Lessons, indexOffset: 1 },
-        set_50:     { title: '50 лучших фокусов',             lessons: set50Lessons, indexOffset: 0 }, // тут с нуля
-        set_35:     { title: '35 лучших фокусов',             lessons: set35Lessons, indexOffset: 1 },
-        set_green:  { title: '10 взрывных фокусов (зелёный)', lessons: greenLessons, indexOffset: 1 },
-        set_blue:   { title: '10 взрывных фокусов (синий)',   lessons: blueLessons,  indexOffset: 1 },
-        set_purple: { title: '10 взрывных фокусов (фиолетовый)', lessons: purpleLessons, indexOffset: 1 },
-        set_red:    { title: '10 взрывных фокусов (красный)', lessons: redLessons,   indexOffset: 1 }
+        set_75:     { title: '75 лучших фокусов',                 lessons: set75Lessons,   indexOffset: 1 },
+        set_50:     { title: '50 лучших фокусов',                 lessons: set50Lessons,   indexOffset: 0 },
+        set_25_10:  { title: '25+10 лучших фокусов',              lessons: set25_10Lessons,indexOffset: 1 },
+        set_green:  { title: '10 взрывных фокусов (зелёный)',     lessons: greenLessons,   indexOffset: 1 },
+        set_blue:   { title: '10 взрывных фокусов (синий)',       lessons: blueLessons,    indexOffset: 1 },
+        set_purple: { title: '10 взрывных фокусов (фиолетовый)',  lessons: purpleLessons,  indexOffset: 1 },
+        set_red:    { title: '10 взрывных фокусов (красный)',     lessons: redLessons,     indexOffset: 1 }
     };
 
-    // === 3. ГЛОБАЛ ===
+    // === 4. ГЛОБАЛ ===
     let courseSelectionPage, lessonListView, videoPlayerView, lessonList;
     let currentCourseId = null;
     let bgMusic, clickSound, isMusicPlaying = false, isSoundEnabled = true;
@@ -881,7 +920,7 @@
         setupCarouselWheelScroll();
     }
 
-    // === 4. АУДИО ===
+    // === 5. АУДИО ===
     function playClickSound() {
         if (isSoundEnabled && clickSound) {
             clickSound.currentTime = 0;
@@ -931,7 +970,7 @@
         }
     }
 
-    // === 5. КАРУСЕЛЬ: колесо мыши -> горизонтальный скролл ===
+    // === 6. КАРУСЕЛЬ: колесо мыши -> горизонтальный скролл ===
     function setupCarouselWheelScroll() {
         const wrapper = document.getElementById('course-carousel-wrapper');
         if (!wrapper) return;
@@ -943,7 +982,7 @@
         }, { passive: false });
     }
 
-    // === 6. НАВИГАЦИЯ ===
+    // === 7. НАВИГАЦИЯ ===
     function startApp() {
         document.body.addEventListener('click', () => {
             if (!isMusicPlaying && bgMusic.paused) toggleMusic();
@@ -1052,7 +1091,7 @@
         }
     }
 
-    // === 7. РЕГИСТРАЦИЯ ===
+    // === 8. РЕГИСТРАЦИЯ ===
     function getTelegramIdFromContext() {
         if (window.Telegram && window.Telegram.WebApp &&
             Telegram.WebApp.initDataUnsafe &&
@@ -1166,7 +1205,7 @@
         }
     }
 
-    // === 8. ИНИЦИАЛИЗАЦИЯ ===
+    // === 9. ИНИЦИАЛИЗАЦИЯ ===
     document.addEventListener('DOMContentLoaded', () => {
         initializeDOMElements();
 
