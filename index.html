@@ -1263,9 +1263,9 @@
         const data = Object.fromEntries(formData.entries());
 
         if (data.tg_id && data.tg_id !== 'null' && data.tg_id !== 'undefined') {
-            data.source = 'Телеграм';
+            data.source = 'Телеграм Руслан';
         } else {
-            data.source = 'Сайт';
+            data.source = 'Сайт Руслан';
         }
 
         try {
@@ -1277,7 +1277,7 @@
             });
 
             localStorage.setItem(USER_STORAGE_KEY, 'true');
-            if (data.source === 'Телеграм') {
+            if (data.source === 'Телеграм Руслан') {
                 localStorage.setItem(TG_ID_STORAGE_KEY, data.tg_id);
             }
 
@@ -1285,7 +1285,7 @@
         } catch (err) {
             document.getElementById('modal-title').textContent = 'Ошибка!';
             loadingSpinner.textContent = 'Ошибка при сохранении данных. Проверьте соединение.';
-            setTimeout(() => showRegistrationModal(data.source === 'Телеграм'), 3000);
+            setTimeout(() => showRegistrationModal(data.source === 'Телеграм Руслан'), 3000);
         }
     }
 
