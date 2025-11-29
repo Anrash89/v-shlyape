@@ -453,7 +453,6 @@
 </header>
 
 <main>
-    <!-- ВЫБОР НАБОРА -->
     <section id="course-selection">
         <h2>Выберите свой обучающий набор техник</h2>
         <div class="carousel-wrapper" id="course-carousel-wrapper">
@@ -506,7 +505,6 @@
         </p>
     </section>
 
-    <!-- СПИСОК УРОКОВ -->
     <section id="lesson-list-view" class="hidden">
         <button class="back-button" onclick="showCourseSelection()">
             ← Вернуться к выбору наборов
@@ -526,7 +524,6 @@
         <ul id="lesson-list"></ul>
     </section>
 
-    <!-- ПРОСМОТР ВИДЕО -->
     <section id="video-player-view" class="hidden">
         <button class="back-button" onclick="goBackToLessonList()">
             ← Назад к списку уроков
@@ -559,7 +556,6 @@
     </section>
 </main>
 
-<!-- РЕГИСТРАЦИЯ -->
 <div id="registration-overlay" class="registration-overlay hidden">
     <div class="registration-modal">
         <h2 id="modal-title">Добро пожаловать!</h2>
@@ -624,83 +620,93 @@
     const USER_STORAGE_KEY = 'magic_course_user_registered_hat';
     const TG_ID_STORAGE_KEY = 'magic_course_tg_id_hat';
 
-    // === 1. НАБОР "75 лучших фокусов" ===
-    const set75Lessons = [
-      { name: 'Фокус с монеткой и стаканом №1', videoId: '08Kx6GWfuLJ15VVLB9wZRg', imageUrl: `${IMAGE_BASE_URL}set75/01.webp`, duration: '' },
-      { name: 'Фокус с монеткой и стаканом №2', videoId: '4FHn2u9avtFz5y5edoaKZn', imageUrl: `${IMAGE_BASE_URL}set75/02.webp`, duration: '' },
-      { name: 'Фокус со стаканом', videoId: 'iwYebxbfYgsWiSavnG6f73', imageUrl: `${IMAGE_BASE_URL}set75/03.webp`, duration: '' },
-      { name: 'Фокус с монеткой и стаканом №3', videoId: 'k1A2Gu5q9jt1Ergg13B2xN', imageUrl: `${IMAGE_BASE_URL}set75/04.webp`, duration: '' },
-      { name: 'Фокус с платком и пластинкой', videoId: 'vB8PZ3bum4EmiCjz1s7p2e', imageUrl: `${IMAGE_BASE_URL}set75/05.webp`, duration: '' },
-      { name: 'Фокус с платком и ручкой', videoId: 'nMsgE7FV9egrpvLV842tof', imageUrl: `${IMAGE_BASE_URL}set75/06.webp`, duration: '' },
-      { name: 'Фокус с магнитами и стаканом', videoId: '6r3pPfgPBdLiAU1aH1dSE1', imageUrl: `${IMAGE_BASE_URL}set75/07.webp`, duration: '' },
-      { name: 'Фокус с шариком и стаканом', videoId: 'tet1Tag2mdzR5PTSaCpdJQ', imageUrl: `${IMAGE_BASE_URL}set75/08.webp`, duration: '' },
-      { name: 'Фокус с силиконовой материей и монетой', videoId: '3N8d6wnNCJXAsmfor37Z6C', imageUrl: `${IMAGE_BASE_URL}set75/09.webp`, duration: '' },
-      { name: 'Фокус с бумажным стаканчиком №1', videoId: 'eDXSZnJPXwxNWPkbqA1GFo', imageUrl: `${IMAGE_BASE_URL}set75/10.webp`, duration: '' },
-      { name: 'Фокус с бумажным стаканчиком №2', videoId: 'rcmNCKZFbdqFFTNroutiYN', imageUrl: `${IMAGE_BASE_URL}set75/11.webp`, duration: '' },
-      { name: 'Фокус со стаканом с жидкостью', videoId: 'a381iv6Ly1Q8ZdCrWG1j2Q', imageUrl: `${IMAGE_BASE_URL}set75/12.webp`, duration: '' },
-      { name: 'Фокус с воздушным шариком', videoId: 'suppep3Dju2U1ZAeti1Ueh', imageUrl: `${IMAGE_BASE_URL}set75/13.webp`, duration: '' },
-      { name: 'Фокус с коробочкой с шариком', videoId: '5NX3JZh6W3trGYAYCcrrwq', imageUrl: `${IMAGE_BASE_URL}set75/14.webp`, duration: '' },
-      { name: 'Фокус с бутылкой и осьминогом', videoId: 'osEDVw8PfuNgWAAYFzdDci', imageUrl: `${IMAGE_BASE_URL}set75/15.webp`, duration: '' },
-      { name: 'Фокус с трубочками №1', videoId: '2K9LBkR7qGDDnbqf55VQ3P', imageUrl: `${IMAGE_BASE_URL}set75/16.webp`, duration: '' },
-      { name: 'Фокус с трубочками №2', videoId: '4qK7Q3Nar6yrCJ4iLhYutr', imageUrl: `${IMAGE_BASE_URL}set75/17.webp`, duration: '' },
-      { name: 'Фокус с трубочками №3', videoId: 'sCxSEjrysf1NkoYJXBNqbr', imageUrl: `${IMAGE_BASE_URL}set75/18.webp`, duration: '' },
-      { name: 'Фокус с трубочками №4', videoId: 'quCvhgExNKs6ckrRRsp5Xe', imageUrl: `${IMAGE_BASE_URL}set75/19.webp`, duration: '' },
-      { name: 'Фокус с трубочками №5', videoId: '3UG5pnU1eeK6qMxmkS4sDk', imageUrl: `${IMAGE_BASE_URL}set75/20.webp`, duration: '' },
-      { name: 'Фокус с трубочками №6', videoId: 'xf5gR8ziY4UUxTZrVcPYUW', imageUrl: `${IMAGE_BASE_URL}set75/21.webp`, duration: '' },
-      { name: 'Фокус с трубочками №7', videoId: '7D2Pyu2hVPkaQcvfdSDnSn', imageUrl: `${IMAGE_BASE_URL}set75/22.webp`, duration: '' },
-      { name: 'Фокус с трубочками №8', videoId: '4nAZBgzGS9fs2uav9ko136', imageUrl: `${IMAGE_BASE_URL}set75/23.webp`, duration: '' },
-      { name: 'Фокус с ручкой №1', videoId: '2Ge2y8YGMW6W5hjjv1toy9', imageUrl: `${IMAGE_BASE_URL}set75/24.webp`, duration: '' },
-      { name: 'Фокус с ручкой и купюрой №1', videoId: 'oq3Eq1vonpJQ9gt1C7qaS6', imageUrl: `${IMAGE_BASE_URL}set75/25.webp`, duration: '' },
-      { name: 'Фокус с волшебной палочкой №1', videoId: 'cUK7UtoqNS6aHZb7MUhKJf', imageUrl: `${IMAGE_BASE_URL}set75/26.webp`, duration: '' },
-      { name: 'Фокус с ручкой и купюрой №2', videoId: '4crYByNehEmS3Pw5xydY8U', imageUrl: `${IMAGE_BASE_URL}set75/27.webp`, duration: '' },
-      { name: 'Фокус с волшебной тростью', videoId: '0BhyKpcf17f4AXPLSkdGQU', imageUrl: `${IMAGE_BASE_URL}set75/28.webp`, duration: '' },
-      { name: 'Фокус с печеньем', videoId: 'hbcu7w4WB2mTi1YTrTwW1A', imageUrl: `${IMAGE_BASE_URL}set75/29.webp`, duration: '' },
-      { name: 'Фокус с раскраской', videoId: 'bxQHGnDfqkb89pbu9CCo3H', imageUrl: `${IMAGE_BASE_URL}set75/30.webp`, duration: '' },
-      { name: 'Фокус с булавкой со спичкой', videoId: '5ZxzLHp5E5psTbddjLaTNM', imageUrl: `${IMAGE_BASE_URL}set75/31.webp`, duration: '' },
-      { name: 'Фокус с монеткой №1', videoId: '0FKMpLiKdNu37ivBzHf8LS', imageUrl: `${IMAGE_BASE_URL}set75/32.webp`, duration: '' },
-      { name: 'Фокус с монеткой и леденцом', videoId: 'oBLcgZeiP2txJM9vmENCkG', imageUrl: `${IMAGE_BASE_URL}set75/33.webp`, duration: '' },
-      { name: 'Фокус с круглой шкатулкой', videoId: 'xwjShnyz358X56Gmw1b1J2', imageUrl: `${IMAGE_BASE_URL}set75/34.webp`, duration: '' },
-      { name: 'Фокус с волшебной палочкой №2', videoId: 'egJeHpt8N8eBgxUH8PpMtx', imageUrl: `${IMAGE_BASE_URL}set75/35.webp`, duration: '' },
-      { name: 'Фокус с кувшином', videoId: 'rCnFZyShmj1aw38pQni85Y', imageUrl: `${IMAGE_BASE_URL}set75/36.webp`, duration: '' },
-      { name: 'Фокус с прямоугольной шкатулкой', videoId: 'dSiZqEQkN3WFokSwQx2hZ6', imageUrl: `${IMAGE_BASE_URL}set75/37.webp`, duration: '' },
-      { name: 'Фокус с пушистиком Байла', videoId: 'tQowRoUYHFa7PVRqWaXPnL', imageUrl: `${IMAGE_BASE_URL}set75/38.webp`, duration: '' },
-      { name: 'Фокус с колодой в футляре', videoId: 'caWeZpxqUvnseP15fVYcRh', imageUrl: `${IMAGE_BASE_URL}set75/39.webp`, duration: '' },
-      { name: 'Фокус с ручкой №3', videoId: 'dCY6qS39XBACXPNxh64Xhx', imageUrl: `${IMAGE_BASE_URL}set75/40.webp`, duration: '' },
-      { name: 'Фокус с крышками', videoId: 'gMCYd4fnqmWLeXYSVRNtbo', imageUrl: `${IMAGE_BASE_URL}set75/41.webp`, duration: '' },
-      { name: 'Фокус с верёвкой', videoId: 'dqoeyZ1K93Zc9tFzSBjpND', imageUrl: `${IMAGE_BASE_URL}set75/42.webp`, duration: '' },
-      { name: 'Фокус с монеткой №2', videoId: '0grSSEB315A3f2NcQKyXMa', imageUrl: `${IMAGE_BASE_URL}set75/43.webp`, duration: '' },
-      { name: 'Фокус с монеткой №3', videoId: '0yXkYxUkvEdzpsz2HKVmex', imageUrl: `${IMAGE_BASE_URL}set75/44.webp`, duration: '' },
-      { name: 'Фокус с монеткой и бутылкой', videoId: '5ruZSqV2cyPrNS1JDDhfmb', imageUrl: `${IMAGE_BASE_URL}set75/45.webp`, duration: '' },
-      { name: 'Фокус с карточками с животными', videoId: 'ifq98xGLDDuLUTg51iSWWK', imageUrl: `${IMAGE_BASE_URL}set75/46.webp`, duration: '' },
-      { name: 'Внимание: отсутствует на диске (Угадаю твою карту)', videoId: '', imageUrl: `${IMAGE_BASE_URL}set75/47.webp`, duration: '' },
-      { name: 'Фокус с карточками с десертами', videoId: 'jnYhSV2iDrqRZ58rX1Q5to', imageUrl: `${IMAGE_BASE_URL}set75/48.webp`, duration: '' },
-      { name: 'Фокус с карточкой “Дай пять”', videoId: 'jNQZYyMxM6Psv3aEQph7d4', imageUrl: `${IMAGE_BASE_URL}set75/49.webp`, duration: '' },
-      { name: 'Фокус с баночкой с кубиком', videoId: '2H1jE5fv7erQmXfrGzmxq2', imageUrl: `${IMAGE_BASE_URL}set75/50.webp`, duration: '' },
-      { name: 'Фокус с кубиками', videoId: 'oTZDwfWj7oTBu4yD2JXLZs', imageUrl: `${IMAGE_BASE_URL}set75/51.webp`, duration: '' },
-      { name: 'Фокус с листом бумаги', videoId: 'uXQE4Y3SU3Lb7YMnKT3jmT', imageUrl: `${IMAGE_BASE_URL}set75/52.webp`, duration: '' },
-      { name: 'Внимание: отсутствует на диске (Угадаю задуманное зрителем, с сообщником)', videoId: '', imageUrl: `${IMAGE_BASE_URL}set75/53.webp`, duration: '' },
-      { name: 'Фокус с колодой карт №1', videoId: '22QyaLJACfbBWveFoWPB4W', imageUrl: `${IMAGE_BASE_URL}set75/54.webp`, duration: '' },
-      { name: 'Фокус с колодой карт №2', videoId: 'w84xxUQNgY4ahTDtgvR7wt', imageUrl: `${IMAGE_BASE_URL}set75/55.webp`, duration: '' },
-      { name: 'Фокус с колодой карт №3', videoId: 'iz78bQfjMiJTzdtAqS5fGt', imageUrl: `${IMAGE_BASE_URL}set75/56.webp`, duration: '' },
-      { name: 'Фокус с колодой карт №4', videoId: '84CSAV9U3anYLEjsJUDdpc', imageUrl: `${IMAGE_BASE_URL}set75/57.webp`, duration: '' },
-      { name: 'Фокус с колодой карт №5', videoId: 'ekMb5PEruDL7E952AEpZji', imageUrl: `${IMAGE_BASE_URL}set75/58.webp`, duration: '' },
-      { name: 'Фокус с колодой карт с человечком', videoId: 'a4JeWQCkqSLTZZMAW818YW', imageUrl: `${IMAGE_BASE_URL}set75/59.webp`, duration: '' },
-      { name: 'Фокус с картами №1', videoId: 'g1PFvTYHreDSyj4wbrzMDs', imageUrl: `${IMAGE_BASE_URL}set75/60.webp`, duration: '' },
-      { name: 'Фокус с картами №2', videoId: 'qYGrHajXj481fCG1mZfF3d', imageUrl: `${IMAGE_BASE_URL}set75/61.webp`, duration: '' },
-      { name: 'Фокус с картами №3', videoId: 'a3csho4mnthBXHoaQJq5oB', imageUrl: `${IMAGE_BASE_URL}set75/62.webp`, duration: '' },
-      { name: 'Фокус с картами №4', videoId: 'gDa3MWw7tjjswRHiRnN7wN', imageUrl: `${IMAGE_BASE_URL}set75/63.webp`, duration: '' },
-      { name: 'Фокус с использованием рук', videoId: 'hgcwhFh2BpmXqfKKJZaTNv', imageUrl: `${IMAGE_BASE_URL}set75/64.webp`, duration: '' },
-      { name: 'Фокус с картами №5', videoId: '7Lgt1C8Bwbg4nFbD9rHfr3', imageUrl: `${IMAGE_BASE_URL}set75/65.webp`, duration: '' },
-      { name: 'Фокус с кошельком с картами', videoId: 'ahtEMk8QwNqhrWco8uoTYz', imageUrl: `${IMAGE_BASE_URL}set75/66.webp`, duration: '' },
-      { name: 'Фокус с резинками №1', videoId: '7asYipHJNxxQKntnpVWqoa', imageUrl: `${IMAGE_BASE_URL}set75/67.webp`, duration: '' },
-      { name: 'Фокус с монеткой и купюрой', videoId: 'eB9NGLCP5dAXARRikmcdEm', imageUrl: `${IMAGE_BASE_URL}set75/68.webp`, duration: '' },
-      { name: 'Фокус с резинкой', videoId: 'fLq4jibjivVwxSdXWLAvGp', imageUrl: `${IMAGE_BASE_URL}set75/69.webp`, duration: '' },
-      { name: 'Фокус с резинками №2', videoId: 'jD9gcu7q8ueA4WYAmG9ru6', imageUrl: `${IMAGE_BASE_URL}set75/70.webp`, duration: '' },
-      { name: 'Фокус с резинкой и купюрой', videoId: 'iBDgbkmsWR5auygAR8Q7jk', imageUrl: `${IMAGE_BASE_URL}set75/71.webp`, duration: '' },
-      { name: 'Фокус с купюрой и бумажкой', videoId: '4xKuVdUEDwtxQZju6VzAKv', imageUrl: `${IMAGE_BASE_URL}set75/72.webp`, duration: '' },
-      { name: 'Фокус с купюрами', videoId: 'j7b24mjPkfeYggjfxJy27D', imageUrl: `${IMAGE_BASE_URL}set75/73.webp`, duration: '' },
-      { name: 'Фокус с карточкой клоуна', videoId: '', imageUrl: `${IMAGE_BASE_URL}set75/74.webp`, duration: '' }
+    // === 1. НАБОР "75 лучших фокусов" (Обновлено для автоматической генерации картинок .jpeg) ===
+    // Сначала определяем "сырые" данные (имя и видео ID)
+    const set75RawData = [
+      { name: 'Фокус с монеткой и стаканом №1', videoId: '08Kx6GWfuLJ15VVLB9wZRg' },
+      { name: 'Фокус с монеткой и стаканом №2', videoId: '4FHn2u9avtFz5y5edoaKZn' },
+      { name: 'Фокус со стаканом', videoId: 'iwYebxbfYgsWiSavnG6f73' },
+      { name: 'Фокус с монеткой и стаканом №3', videoId: 'k1A2Gu5q9jt1Ergg13B2xN' },
+      { name: 'Фокус с платком и пластинкой', videoId: 'vB8PZ3bum4EmiCjz1s7p2e' },
+      { name: 'Фокус с платком и ручкой', videoId: 'nMsgE7FV9egrpvLV842tof' },
+      { name: 'Фокус с магнитами и стаканом', videoId: '6r3pPfgPBdLiAU1aH1dSE1' },
+      { name: 'Фокус с шариком и стаканом', videoId: 'tet1Tag2mdzR5PTSaCpdJQ' },
+      { name: 'Фокус с силиконовой материей и монетой', videoId: '3N8d6wnNCJXAsmfor37Z6C' },
+      { name: 'Фокус с бумажным стаканчиком №1', videoId: 'eDXSZnJPXwxNWPkbqA1GFo' },
+      { name: 'Фокус с бумажным стаканчиком №2', videoId: 'rcmNCKZFbdqFFTNroutiYN' },
+      { name: 'Фокус со стаканом с жидкостью', videoId: 'a381iv6Ly1Q8ZdCrWG1j2Q' },
+      { name: 'Фокус с воздушным шариком', videoId: 'suppep3Dju2U1ZAeti1Ueh' },
+      { name: 'Фокус с коробочкой с шариком', videoId: '5NX3JZh6W3trGYAYCcrrwq' },
+      { name: 'Фокус с бутылкой и осьминогом', videoId: 'osEDVw8PfuNgWAAYFzdDci' },
+      { name: 'Фокус с трубочками №1', videoId: '2K9LBkR7qGDDnbqf55VQ3P' },
+      { name: 'Фокус с трубочками №2', videoId: '4qK7Q3Nar6yrCJ4iLhYutr' },
+      { name: 'Фокус с трубочками №3', videoId: 'sCxSEjrysf1NkoYJXBNqbr' },
+      { name: 'Фокус с трубочками №4', videoId: 'quCvhgExNKs6ckrRRsp5Xe' },
+      { name: 'Фокус с трубочками №5', videoId: '3UG5pnU1eeK6qMxmkS4sDk' },
+      { name: 'Фокус с трубочками №6', videoId: 'xf5gR8ziY4UUxTZrVcPYUW' },
+      { name: 'Фокус с трубочками №7', videoId: '7D2Pyu2hVPkaQcvfdSDnSn' },
+      { name: 'Фокус с трубочками №8', videoId: '4nAZBgzGS9fs2uav9ko136' },
+      { name: 'Фокус с ручкой №1', videoId: '2Ge2y8YGMW6W5hjjv1toy9' },
+      { name: 'Фокус с ручкой и купюрой №1', videoId: 'oq3Eq1vonpJQ9gt1C7qaS6' },
+      { name: 'Фокус с волшебной палочкой №1', videoId: 'cUK7UtoqNS6aHZb7MUhKJf' },
+      { name: 'Фокус с ручкой и купюрой №2', videoId: '4crYByNehEmS3Pw5xydY8U' },
+      { name: 'Фокус с волшебной тростью', videoId: '0BhyKpcf17f4AXPLSkdGQU' },
+      { name: 'Фокус с печеньем', videoId: 'hbcu7w4WB2mTi1YTrTwW1A' },
+      { name: 'Фокус с раскраской', videoId: 'bxQHGnDfqkb89pbu9CCo3H' },
+      { name: 'Фокус с булавкой со спичкой', videoId: '5ZxzLHp5E5psTbddjLaTNM' },
+      { name: 'Фокус с монеткой №1', videoId: '0FKMpLiKdNu37ivBzHf8LS' },
+      { name: 'Фокус с монеткой и леденцом', videoId: 'oBLcgZeiP2txJM9vmENCkG' },
+      { name: 'Фокус с круглой шкатулкой', videoId: 'xwjShnyz358X56Gmw1b1J2' },
+      { name: 'Фокус с волшебной палочкой №2', videoId: 'egJeHpt8N8eBgxUH8PpMtx' },
+      { name: 'Фокус с кувшином', videoId: 'rCnFZyShmj1aw38pQni85Y' },
+      { name: 'Фокус с прямоугольной шкатулкой', videoId: 'dSiZqEQkN3WFokSwQx2hZ6' },
+      { name: 'Фокус с пушистиком Байла', videoId: 'tQowRoUYHFa7PVRqWaXPnL' },
+      { name: 'Фокус с колодой в футляре', videoId: 'caWeZpxqUvnseP15fVYcRh' },
+      { name: 'Фокус с ручкой №3', videoId: 'dCY6qS39XBACXPNxh64Xhx' },
+      { name: 'Фокус с крышками', videoId: 'gMCYd4fnqmWLeXYSVRNtbo' },
+      { name: 'Фокус с верёвкой', videoId: 'dqoeyZ1K93Zc9tFzSBjpND' },
+      { name: 'Фокус с монеткой №2', videoId: '0grSSEB315A3f2NcQKyXMa' },
+      { name: 'Фокус с монеткой №3', videoId: '0yXkYxUkvEdzpsz2HKVmex' },
+      { name: 'Фокус с монеткой и бутылкой', videoId: '5ruZSqV2cyPrNS1JDDhfmb' },
+      { name: 'Фокус с карточками с животными', videoId: 'ifq98xGLDDuLUTg51iSWWK' },
+      { name: 'Внимание: отсутствует на диске (Угадаю твою карту)', videoId: '' },
+      { name: 'Фокус с карточками с десертами', videoId: 'jnYhSV2iDrqRZ58rX1Q5to' },
+      { name: 'Фокус с карточкой “Дай пять”', videoId: 'jNQZYyMxM6Psv3aEQph7d4' },
+      { name: 'Фокус с баночкой с кубиком', videoId: '2H1jE5fv7erQmXfrGzmxq2' },
+      { name: 'Фокус с кубиками', videoId: 'oTZDwfWj7oTBu4yD2JXLZs' },
+      { name: 'Фокус с листом бумаги', videoId: 'uXQE4Y3SU3Lb7YMnKT3jmT' },
+      { name: 'Внимание: отсутствует на диске (Угадаю задуманное зрителем, с сообщником)', videoId: '' },
+      { name: 'Фокус с колодой карт №1', videoId: '22QyaLJACfbBWveFoWPB4W' },
+      { name: 'Фокус с колодой карт №2', videoId: 'w84xxUQNgY4ahTDtgvR7wt' },
+      { name: 'Фокус с колодой карт №3', videoId: 'iz78bQfjMiJTzdtAqS5fGt' },
+      { name: 'Фокус с колодой карт №4', videoId: '84CSAV9U3anYLEjsJUDdpc' },
+      { name: 'Фокус с колодой карт №5', videoId: 'ekMb5PEruDL7E952AEpZji' },
+      { name: 'Фокус с колодой карт с человечком', videoId: 'a4JeWQCkqSLTZZMAW818YW' },
+      { name: 'Фокус с картами №1', videoId: 'g1PFvTYHreDSyj4wbrzMDs' },
+      { name: 'Фокус с картами №2', videoId: 'qYGrHajXj481fCG1mZfF3d' },
+      { name: 'Фокус с картами №3', videoId: 'a3csho4mnthBXHoaQJq5oB' },
+      { name: 'Фокус с картами №4', videoId: 'gDa3MWw7tjjswRHiRnN7wN' },
+      { name: 'Фокус с использованием рук', videoId: 'hgcwhFh2BpmXqfKKJZaTNv' },
+      { name: 'Фокус с картами №5', videoId: '7Lgt1C8Bwbg4nFbD9rHfr3' },
+      { name: 'Фокус с кошельком с картами', videoId: 'ahtEMk8QwNqhrWco8uoTYz' },
+      { name: 'Фокус с резинками №1', videoId: '7asYipHJNxxQKntnpVWqoa' },
+      { name: 'Фокус с монеткой и купюрой', videoId: 'eB9NGLCP5dAXARRikmcdEm' },
+      { name: 'Фокус с резинкой', videoId: 'fLq4jibjivVwxSdXWLAvGp' },
+      { name: 'Фокус с резинками №2', videoId: 'jD9gcu7q8ueA4WYAmG9ru6' },
+      { name: 'Фокус с резинкой и купюрой', videoId: 'iBDgbkmsWR5auygAR8Q7jk' },
+      { name: 'Фокус с купюрой и бумажкой', videoId: '4xKuVdUEDwtxQZju6VzAKv' },
+      { name: 'Фокус с купюрами', videoId: 'j7b24mjPkfeYggjfxJy27D' },
+      { name: 'Фокус с карточкой клоуна', videoId: '' }
     ];
+
+    // Теперь автоматически генерируем полный список с путями к .jpeg
+    const set75Lessons = set75RawData.map((item, index) => ({
+        name: item.name,
+        videoId: item.videoId,
+        // Индекс начинается с 0, а файлы с 1.jpeg, поэтому index + 1
+        imageUrl: `${IMAGE_BASE_URL}set75/${index + 1}.jpeg`,
+        duration: ''
+    }));
 
     // === 2. НАБОР "50 лучших фокусов" ===
     const set50Names = [
@@ -936,11 +942,11 @@
     const orangeLessons = [
         { name: 'Фокус с поролоновыми шариками и кубиком', videoId: 'efc9efrqePdRPPyv1y1QBi', imageUrl: `${IMAGE_BASE_URL}set_orange/01.webp`, duration: '' },
         { name: 'Фокус с кольцом и цепочкой',               videoId: 'bHR4Ee8wfKTfCQqF4G4KfA', imageUrl: `${IMAGE_BASE_URL}set_orange/02.webp`, duration: '' },
-        { name: 'Фокус с баночкой с кубиком',              videoId: '62dGFaS525Re3WCi6N3K4L', imageUrl: `${IMAGE_BASE_URL}set_orange/03.webp`, duration: '' },
-        { name: 'Фокус с числовыми картами',               videoId: 'pKEQaU8CRxivmYiDPffRpM', imageUrl: `${IMAGE_BASE_URL}set_orange/04.webp`, duration: '' },
-        { name: 'Фокус с кошельком с картами',             videoId: 'xwHAGkCjKxfqXENV8wXCYQ', imageUrl: `${IMAGE_BASE_URL}set_orange/05.webp`, duration: '' },
-        { name: 'Фокус с кольцом и резинкой',              videoId: 'sKYxKRvA2dLnkUCPhUwvkH', imageUrl: `${IMAGE_BASE_URL}set_orange/06.webp`, duration: '' },
-        { name: 'Фокус с резинками №3',                    videoId: 'pVq4YJgTw7cqDxsRdZXtym', imageUrl: `${IMAGE_BASE_URL}set_orange/07.webp`, duration: '' }
+        { name: 'Фокус с баночкой с кубиком',               videoId: '62dGFaS525Re3WCi6N3K4L', imageUrl: `${IMAGE_BASE_URL}set_orange/03.webp`, duration: '' },
+        { name: 'Фокус с числовыми картами',                videoId: 'pKEQaU8CRxivmYiDPffRpM', imageUrl: `${IMAGE_BASE_URL}set_orange/04.webp`, duration: '' },
+        { name: 'Фокус с кошельком с картами',              videoId: 'xwHAGkCjKxfqXENV8wXCYQ', imageUrl: `${IMAGE_BASE_URL}set_orange/05.webp`, duration: '' },
+        { name: 'Фокус с кольцом и резинкой',               videoId: 'sKYxKRvA2dLnkUCPhUwvkH', imageUrl: `${IMAGE_BASE_URL}set_orange/06.webp`, duration: '' },
+        { name: 'Фокус с резинками №3',                     videoId: 'pVq4YJgTw7cqDxsRdZXtym', imageUrl: `${IMAGE_BASE_URL}set_orange/07.webp`, duration: '' }
     ];
 
     // === 8. Набор "5 лучших фокусов" ===
