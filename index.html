@@ -462,6 +462,12 @@
                     <h3>75 ЛУЧШИХ ФОКУСОВ</h3>
                     <p>Максимальный арсенал иллюзиониста для уверенных выступлений.</p>
                 </div>
+
+                <div class="course-card" data-id="set_75_new_link" data-type="big">
+                    <img src="images/set1.png" alt="75 лучших фокусов 2025-2026" class="card-image">
+                    <h3>75 ЛУЧШИХ (2025-2026)</h3>
+                    <p>Новая версия. Ссылка на Яндекс.Диск.</p>
+                </div>
                 <div class="course-card" data-id="set_50" data-type="big">
                     <img src="images/set_new_50.png" alt="50 лучших фокусов" class="card-image">
                     <h3>50 ЛУЧШИХ ФОКУСОВ</h3>
@@ -819,7 +825,7 @@
 
     // === 3. НАБОР "35 лучших фокусов" (25+10, с реальными названиями) ===
     const set25_10Names = [
-        'Фокус с волшебным футляром №1',
+        'Фокус с волшебной футляром №1',
         'Фокус с числовой головоломкой №1',
         'Фокус с картами с символами №1',
         'Фокус с картами с символами №2',
@@ -916,7 +922,7 @@
         { name: 'Фокус с резинкой №2',                videoId: 'dY6BmY9DeNVhRQe9tcmsf7', imageUrl: `${IMAGE_BASE_URL}set_blue/07.webp`, duration: '' },
         { name: 'Фокус с резинкой №3',                videoId: 'sGacCBFkf7wug8jbrw49MZ', imageUrl: `${IMAGE_BASE_URL}set_blue/08.webp`, duration: '' },
         { name: 'Фокус с резинками',                  videoId: 'f4LpWeyHss8NRZBGLbNZS6', imageUrl: `${IMAGE_BASE_URL}set_blue/09.webp`, duration: '' },
-        { name: 'Фокус с использованием рук',         videoId: '3s9iHn4D9mjBygE4bHmkZB', imageUrl: `${IMAGE_BASE_URL}set_blue/10.webp`, duration: '' }
+        { name: 'Фокус с использованием рук',          videoId: '3s9iHn4D9mjBygE4bHmkZB', imageUrl: `${IMAGE_BASE_URL}set_blue/10.webp`, duration: '' }
     ];
 
     // === 6. 10 ВФ ДвШ (фиолетовый) — 8 и 9 удалены, последний = 10 ===
@@ -928,7 +934,7 @@
         { name: 'Фокус с колодой в футляре',          videoId: 'wpkGbDNU4HXMYRshphRBYQ', imageUrl: `${IMAGE_BASE_URL}set_purple/05.webp`, duration: '' },
         { name: 'Фокус с карточкой “Дай пять”',       videoId: 'bqJhGRTT1Vjn55NiXRXbUK', imageUrl: `${IMAGE_BASE_URL}set_purple/06.webp`, duration: '' },
         { name: 'Фокус с резинкой №1',                videoId: 'vHd3h4N7u8nhGt6QD2jtYx', imageUrl: `${IMAGE_BASE_URL}set_purple/07.webp`, duration: '' },
-        { name: 'Фокус с использованием рук',         videoId: 'uB8SjBBhtCnqfqfouDVswN', imageUrl: `${IMAGE_BASE_URL}set_purple/08.webp`, duration: '' }
+        { name: 'Фокус с использованием рук',          videoId: 'uB8SjBBhtCnqfqfouDVswN', imageUrl: `${IMAGE_BASE_URL}set_purple/08.webp`, duration: '' }
     ];
 
     // === 7. 10 ВФ ДвШ (красный / оранжевый) — 7,8,9 нет, сразу 10 ===
@@ -939,7 +945,7 @@
         { name: 'Фокус с числовыми картами',                videoId: 'pKEQaU8CRxivmYiDPffRpM', imageUrl: `${IMAGE_BASE_URL}set_orange/04.webp`, duration: '' },
         { name: 'Фокус с кошельком с картами',              videoId: 'xwHAGkCjKxfqXENV8wXCYQ', imageUrl: `${IMAGE_BASE_URL}set_orange/05.webp`, duration: '' },
         { name: 'Фокус с кольцом и резинкой',               videoId: 'sKYxKRvA2dLnkUCPhUwvkH', imageUrl: `${IMAGE_BASE_URL}set_orange/06.webp`, duration: '' },
-        { name: 'Фокус с резинками №3',                     videoId: 'pVq4YJgTw7cqDxsRdZXtym', imageUrl: `${IMAGE_BASE_URL}set_orange/07.webp`, duration: '' }
+        { name: 'Фокус с резинками №3',                      videoId: 'pVq4YJgTw7cqDxsRdZXtym', imageUrl: `${IMAGE_BASE_URL}set_orange/07.webp`, duration: '' }
     ];
 
     // === 8. Набор "5 лучших фокусов" ===
@@ -1325,6 +1331,14 @@
         document.querySelectorAll('.course-card').forEach(card => {
             card.addEventListener('click', (e) => {
                 const courseId = e.currentTarget.getAttribute('data-id');
+
+                // --- НОВОЕ: ПРОВЕРКА ДЛЯ КАРТОЧКИ С ССЫЛКОЙ ---
+                if (courseId === 'set_75_new_link') {
+                    window.open('https://disk.yandex.ru/d/7GCK3lh-fGtkrg', '_blank');
+                    return; // Прекращаем выполнение, чтобы не открывать список уроков
+                }
+                // --- КОНЕЦ НОВОГО БЛОКА ---
+
                 showLessonList(courseId);
             });
         });
