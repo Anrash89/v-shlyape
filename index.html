@@ -159,6 +159,7 @@
         .course-card:nth-child(7) { animation-delay: 0.6s; }
         .course-card:nth-child(8) { animation-delay: 0.7s; }
         .course-card:nth-child(9) { animation-delay: 0.8s; }
+        .course-card:nth-child(10) { animation-delay: 0.9s; }
 
         .course-card:hover {
             transform: translateY(-5px) scale(1.05);
@@ -466,8 +467,15 @@
                 <div class="course-card" data-id="set_75_new_link" data-type="big">
                     <img src="images/set1.png" alt="75 лучших фокусов 2025-2026" class="card-image">
                     <h3>75 ЛУЧШИХ (2025-2026)</h3>
-                    <p>Новая версия. Ссылка на Яндекс.Диск.</p>
+                    <p>Новая версия 2025-2026. Ссылка на Яндекс.Диск.</p>
                 </div>
+
+                <div class="course-card" data-id="set_35_new_link" data-type="big">
+                    <img src="images/set_new_35.png" alt="35 лучших фокусов 2025-2026" class="card-image">
+                    <h3>35 ЛУЧШИХ (2025-2026)</h3>
+                    <p>Новая версия 2025-2026. Ссылка на Яндекс.Диск.</p>
+                </div>
+
                 <div class="course-card" data-id="set_50" data-type="big">
                     <img src="images/set_new_50.png" alt="50 лучших фокусов" class="card-image">
                     <h3>50 ЛУЧШИХ ФОКУСОВ</h3>
@@ -945,7 +953,7 @@
         { name: 'Фокус с числовыми картами',                videoId: 'pKEQaU8CRxivmYiDPffRpM', imageUrl: `${IMAGE_BASE_URL}set_orange/04.webp`, duration: '' },
         { name: 'Фокус с кошельком с картами',              videoId: 'xwHAGkCjKxfqXENV8wXCYQ', imageUrl: `${IMAGE_BASE_URL}set_orange/05.webp`, duration: '' },
         { name: 'Фокус с кольцом и резинкой',               videoId: 'sKYxKRvA2dLnkUCPhUwvkH', imageUrl: `${IMAGE_BASE_URL}set_orange/06.webp`, duration: '' },
-        { name: 'Фокус с резинками №3',                      videoId: 'pVq4YJgTw7cqDxsRdZXtym', imageUrl: `${IMAGE_BASE_URL}set_orange/07.webp`, duration: '' }
+        { name: 'Фокус с резинками №3',                     videoId: 'pVq4YJgTw7cqDxsRdZXtym', imageUrl: `${IMAGE_BASE_URL}set_orange/07.webp`, duration: '' }
     ];
 
     // === 8. Набор "5 лучших фокусов" ===
@@ -1332,13 +1340,18 @@
             card.addEventListener('click', (e) => {
                 const courseId = e.currentTarget.getAttribute('data-id');
 
-                // --- НОВОЕ: ПРОВЕРКА ДЛЯ КАРТОЧКИ С ССЫЛКОЙ ---
+                // --- ЛОГИКА ДЛЯ 75 ЛУЧШИХ (НОВАЯ ВЕРСИЯ) ---
                 if (courseId === 'set_75_new_link') {
                     window.open('https://disk.yandex.ru/d/7GCK3lh-fGtkrg', '_blank');
-                    return; // Прекращаем выполнение, чтобы не открывать список уроков
+                    return; 
                 }
-                // --- КОНЕЦ НОВОГО БЛОКА ---
 
+                // --- НОВОЕ: ЛОГИКА ДЛЯ 35 ЛУЧШИХ (НОВАЯ ВЕРСИЯ) ---
+                if (courseId === 'set_35_new_link') {
+                    window.open('https://disk.yandex.ru/d/0VVD1y_ZakwGpQ', '_blank');
+                    return;
+                }
+                
                 showLessonList(courseId);
             });
         });
