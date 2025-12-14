@@ -93,12 +93,15 @@
             max-width: 800px;
             width: 100%;
             margin: 0 auto;
+            display: flex;
+            align-items: center; /* Центрируем контент по вертикали */
         }
 
         /* --- ВЫБОР КУРСА (КАРУСЕЛЬ) --- */
         #course-selection {
             text-align: center;
             padding: 0 10px;
+            width: 100%;
         }
         #course-selection h2 {
             font-family: 'Bebas Neue', sans-serif;
@@ -137,7 +140,7 @@
             padding: 15px;
             min-width: 200px;
             max-width: 220px;
-            height: 300px;
+            height: 320px; /* Чуть увеличил высоту для длинных описаний */
             box-shadow: 5px 5px 0 var(--primary-color);
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -148,9 +151,13 @@
             flex-direction: column;
             justify-content: space-between;
             flex-shrink: 0;
+            position: relative; /* Для метки */
 
             animation: slideIn 0.5s ease-out forwards;
         }
+
+        /* Задержка анимации для красоты */
+        .course-card:nth-child(1) { animation-delay: 0s; }
         .course-card:nth-child(2) { animation-delay: 0.1s; }
         .course-card:nth-child(3) { animation-delay: 0.2s; }
         .course-card:nth-child(4) { animation-delay: 0.3s; }
@@ -169,6 +176,22 @@
         .course-card[data-type="big"] {
             border-color: var(--gold-color);
             box-shadow: 5px 5px 0 var(--gold-color);
+        }
+        
+        /* Метка "NEW" */
+        .badge-new {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #e74c3c;
+            color: white;
+            font-family: 'Bebas Neue', sans-serif;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 2px solid var(--primary-color);
+            transform: rotate(15deg);
+            z-index: 10;
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.3);
         }
 
         .course-card h3 {
@@ -196,171 +219,13 @@
             border: 2px solid var(--primary-color);
             margin-bottom: 10px;
         }
-
-        /* --- СПИСОК УРОКОВ --- */
-        #lesson-list-view {
-            text-align: center;
-            padding: 20px;
-            background-color: var(--secondary-color);
-            border: var(--border-thick);
-            border-radius: 12px;
-            box-shadow: 5px 5px 0 var(--primary-color);
-            max-width: 600px;
-            margin: 20px auto;
-        }
-
-        #lesson-list-title {
-            font-family: 'Permanent Marker', cursive;
+        
+        .action-hint {
+            font-weight: bold;
             color: var(--accent-color);
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-
-        #lesson-list {
-            list-style: none;
-            padding: 0;
-            margin-top: 10px;
-        }
-
-        .lesson-item {
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 8px 12px;
-            margin-bottom: 6px;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border-left: 6px solid var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .lesson-item:hover {
-            transform: translateX(4px);
-            background-color: #fdf5de;
-        }
-
-        .lesson-item.active {
-            border-left-color: var(--accent-color);
-            background-color: #ffe8c9;
-            font-weight: 700;
-        }
-
-        .lesson-item-preview {
-            width: 90px;
-            height: 56px;
-            border-radius: 6px;
-            object-fit: cover;
-            flex-shrink: 0;
-            border: 1px solid #ddd;
-            background: #f5f5f5;
-        }
-
-        .lesson-item span.title {
-            flex-grow: 1;
-            text-align: left;
-            font-size: 0.92em;
-        }
-
-        /* --- ВИДЕО-ПЛЕЕР 16:9 --- */
-        #video-player-view {
-            text-align: center;
-            padding: 20px;
-            background-color: var(--secondary-color);
-            border: var(--border-thick);
-            border-radius: 12px;
-            box-shadow: 5px 5px 0 var(--primary-color);
-            max-width: 700px;
-            margin: 20px auto;
-        }
-
-        #current-lesson-name-label {
-            margin-top: 6px;
-            font-weight: 700;
-            font-size: 0.95em;
-        }
-
-        #current-lesson-name {
-            color: var(--accent-color);
-        }
-
-        .video-player-container-kinescope {
-            margin-top: 14px;
-            margin-bottom: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
-            padding-top: 56.25%;
-            width: 100%;
-            background: #000;
-        }
-
-        @media (min-width: 768px) {
-            .video-player-container-kinescope {
-                max-width: 640px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-        }
-
-        .video-player-container-kinescope iframe {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            z-index: 2;
-        }
-
-        .video-thumbnail-large {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            background-color: #333;
-            transition: opacity 0.3s;
-            z-index: 1;
-        }
-
-        .placeholder-content {
-            padding: 6px 0;
-            color: var(--primary-color);
-        }
-
-        .placeholder-icon {
-            font-size: 2.6em;
-            color: var(--gold-color);
-            margin-bottom: 4px;
-            display: block;
-            animation: pulse 2s infinite;
-        }
-
-        .back-button, #submit-reg-btn, .form-button {
-            background-color: var(--primary-color);
-            color: var(--bg-light);
-            border: 3px solid var(--primary-color);
-            padding: 8px 18px;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-bottom: 14px;
-            font-weight: 700;
-            transition: all 0.1s;
-            width: 100%;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.1em;
-            box-shadow: 3px 3px 0 var(--accent-color);
+            font-size: 0.85em;
+            margin-top: auto;
             text-transform: uppercase;
-        }
-        .back-button:hover, #submit-reg-btn:hover, .form-button:hover {
-            background-color: #555;
-            box-shadow: 3px 3px 0 var(--bg-light);
-        }
-        .back-button:active, #submit-reg-btn:active, .form-button:active {
-            transform: translate(3px, 3px);
-            box-shadow: none;
         }
 
         .hidden { display: none !important; }
@@ -436,6 +301,31 @@
             margin-top: 10px;
         }
 
+        .form-button, .back-button {
+            background-color: var(--primary-color);
+            color: var(--bg-light);
+            border: 3px solid var(--primary-color);
+            padding: 8px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 14px;
+            font-weight: 700;
+            transition: all 0.1s;
+            width: 100%;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1em;
+            box-shadow: 3px 3px 0 var(--accent-color);
+            text-transform: uppercase;
+        }
+        .form-button:hover, .back-button:hover {
+            background-color: #555;
+            box-shadow: 3px 3px 0 var(--bg-light);
+        }
+        .form-button:active, .back-button:active {
+            transform: translate(3px, 3px);
+            box-shadow: none;
+        }
+
         @media (min-width: 769px) {
             #swipe-hint { font-size: 0.8em; opacity: 0.8; }
         }
@@ -455,118 +345,87 @@
 
 <main>
     <section id="course-selection">
-        <h2>Выберите свой обучающий набор техник</h2>
+        <h2>Выберите свой набор (Яндекс.Диск)</h2>
         <div class="carousel-wrapper" id="course-carousel-wrapper">
             <div class="course-carousel">
-                <div class="course-card" data-id="set_75" data-type="big">
+                
+                <div class="course-card" data-link="https://disk.yandex.ru/d/7GCK3lh-fGtkrg" data-type="big">
+                    <div class="badge-new">NEW</div>
+                    <img src="images/set1.png" alt="75 лучших фокусов New" class="card-image">
+                    <h3>75 ЛУЧШИХ (2025-2026)</h3>
+                    <p>Новейшая версия набора. Максимальный арсенал.</p>
+                    <span class="action-hint">Открыть диск ➔</span>
+                </div>
+
+                <div class="course-card" data-link="https://disk.yandex.ru/d/ks6h36c_VHd1rg" data-type="big">
                     <img src="images/set1.png" alt="75 лучших фокусов" class="card-image">
                     <h3>75 ЛУЧШИХ ФОКУСОВ</h3>
-                    <p>Максимальный арсенал иллюзиониста для уверенных выступлений.</p>
+                    <p>Классическая полная версия курса.</p>
+                    <span class="action-hint">Открыть диск ➔</span>
                 </div>
 
-                <div class="course-card" data-id="set_75_new_link" data-type="big">
-                    <img src="images/set1.png" alt="75 лучших фокусов 2025-2026" class="card-image">
-                    <h3>75 ЛУЧШИХ (2025-2026)</h3>
-                    <p>Новая версия 2025-2026. Ссылка на Яндекс.Диск.</p>
-                </div>
-
-                <div class="course-card" data-id="set_35_new_link" data-type="big">
-                    <img src="images/set_new_35.png" alt="35 лучших фокусов 2025-2026" class="card-image">
-                    <h3>35 ЛУЧШИХ (2025-2026)</h3>
-                    <p>Новая версия 2025-2026. Ссылка на Яндекс.Диск.</p>
-                </div>
-
-                <div class="course-card" data-id="set_50" data-type="big">
+                <div class="course-card" data-link="https://disk.yandex.ru/d/WjI7o6WA7RGRQw" data-type="big">
                     <img src="images/set_new_50.png" alt="50 лучших фокусов" class="card-image">
                     <h3>50 ЛУЧШИХ ФОКУСОВ</h3>
                     <p>Сильная база и топовые трюки. Вступление — номер 0.</p>
-                </div>
-                <div class="course-card" data-id="set_25_10" data-type="big">
-                    <img src="images/set_new_35.png" alt="35 лучших фокусов" class="card-image">
-                    <h3>35 ЛУЧШИХ ФОКУСОВ</h3>
-                    <p>Полная линейка: футляры, лампы, маркеры и монеты.</p>
+                    <span class="action-hint">Открыть диск ➔</span>
                 </div>
 
-                <div class="course-card" data-id="set_green" data-type="small">
+                <div class="course-card" data-link="https://disk.yandex.ru/d/0VVD1y_ZakwGpQ" data-type="big">
+                    <div class="badge-new">NEW</div>
+                    <img src="images/set_new_35.png" alt="35 лучших фокусов New" class="card-image">
+                    <h3>35 ЛУЧШИХ (2025-2026)</h3>
+                    <p>Новая версия. Футляры, лампы, маркеры.</p>
+                    <span class="action-hint">Открыть диск ➔</span>
+                </div>
+
+                 <div class="course-card" data-link="https://disk.yandex.ru/d/Hc1yBffG4BOE5Q" data-type="big">
+                    <img src="images/set_new_35.png" alt="35 лучших фокусов" class="card-image">
+                    <h3>35 ЛУЧШИХ ФОКУСОВ</h3>
+                    <p>Классическая линейка фокусов 25+10.</p>
+                    <span class="action-hint">Открыть диск ➔</span>
+                </div>
+
+                <div class="course-card" data-link="https://disk.yandex.ru/d/AvjMx4kI9k0KDw" data-type="small">
                     <img src="images/set_green.png" alt="10 взрывных фокусов (зелёный)" class="card-image">
                     <h3>10 ВЗРЫВНЫХ (ЗЕЛЁНЫЙ)</h3>
                     <p>Купюры, резинки и пакеты: сильные карманные трюки.</p>
+                    <span class="action-hint">Открыть диск ➔</span>
                 </div>
-                <div class="course-card" data-id="set_blue" data-type="small">
+
+                <div class="course-card" data-link="https://disk.yandex.ru/d/aJc0aCWHA4CiQw" data-type="small">
                     <img src="images/set_blue.png" alt="10 взрывных фокусов (синий)" class="card-image">
                     <h3>10 ВЗРЫВНЫХ (СИНИЙ)</h3>
                     <p>Печенье, трость, стаканы и зрелищные эффекты.</p>
+                    <span class="action-hint">Открыть диск ➔</span>
                 </div>
-                <div class="course-card" data-id="set_purple" data-type="small">
+
+                <div class="course-card" data-link="https://disk.yandex.ru/d/3OTNh2-HgbyW1A" data-type="small">
                     <img src="images/set_purple.png" alt="10 ВФ ДвШ (фиолетовый)" class="card-image">
-                    <h3>10 ВФ ДВШ (ФИОЛЕТОВЫЙ)</h3>
-                    <p>Купюры, карты и платки. 8–9 убраны, сразу 10.</p>
+                    <h3>10 ВФ (ФИОЛЕТОВЫЙ)</h3>
+                    <p>Купюры, карты и платки. Внимание к деталям.</p>
+                    <span class="action-hint">Открыть диск ➔</span>
                 </div>
-                <div class="course-card" data-id="set_orange" data-type="small">
+
+                <div class="course-card" data-link="https://disk.yandex.ru/d/gFE5pkX7C9um5Q" data-type="small">
                     <img src="images/set_orange.png" alt="10 ВФ ДвШ (оранжевый)" class="card-image">
-                    <h3>10 ВФ ДВШ (КРАСНЫЙ)</h3>
-                    <p>От поролоновых шариков до резинок №3. Без 7–9.</p>
+                    <h3>10 ВФ (ОРАНЖЕВЫЙ)</h3>
+                    <p>От поролоновых шариков до резинок.</p>
+                    <span class="action-hint">Открыть диск ➔</span>
                 </div>
-                <div class="course-card" data-id="set_5_best" data-type="small">
+
+                <div class="course-card" data-link="https://disk.yandex.ru/d/g8kHv3nGNcUz9A" data-type="small">
                     <img src="images/set5.png" alt="5 лучших фокусов" class="card-image">
                     <h3>5 ЛУЧШИХ ФОКУСОВ</h3>
-                    <p>Сильнейшие трюки + два бонуса.</p>
+                    <p>Сильнейшие трюки + бонусы.</p>
+                    <span class="action-hint">Открыть диск ➔</span>
                 </div>
+
             </div>
         </div>
         <p id="swipe-hint" style="text-align: center; color: var(--primary-color); font-weight: 700; margin-top: 4px;">
             На телефоне — свайпните по карточкам. На компьютере — прокрутите колесо мыши вбок.
         </p>
-    </section>
-
-    <section id="lesson-list-view" class="hidden">
-        <button class="back-button" onclick="showCourseSelection()">
-            ← Вернуться к выбору наборов
-        </button>
-        <h2 id="lesson-list-title">Набор:</h2>
-
-        <div class="placeholder-content" id="lessons-placeholder">
-            <span class="placeholder-icon">🎬</span>
-            <p style="font-size: 1.0em; font-weight: 700; margin-bottom: 4px;">
-                Уроки для набора <span id="placeholder-course-name"></span> загружены.
-            </p>
-            <p style="font-size: 0.9em;">
-                Выберите урок из списка ниже, чтобы посмотреть видео.
-            </p>
-        </div>
-
-        <ul id="lesson-list"></ul>
-    </section>
-
-    <section id="video-player-view" class="hidden">
-        <button class="back-button" onclick="goBackToLessonList()">
-            ← Назад к списку уроков
-        </button>
-
-        <p id="current-lesson-name-label">
-            Смотрим урок: <span id="current-lesson-name"></span>
-        </p>
-
-        <div class="video-player-container-kinescope">
-            <iframe
-                id="kinescope-player"
-                src=""
-                allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; screen-wake-lock;"
-                frameborder="0"
-                allowfullscreen>
-            </iframe>
-            <img id="video-thumbnail-large" class="video-thumbnail-large" src="" alt="Превью урока">
-        </div>
-
-        <div id="no-video-warning" class="placeholder-content hidden">
-            <span class="placeholder-icon">🚫</span>
-            <p style="font-size: 0.95em; font-weight: 700;">
-                Для этого урока пока не привязан видеоролик.
-            </p>
-            <p style="font-size: 0.85em;">
-                Как только добавим код Kinescope — здесь появится видео.
-            </p>
-        </div>
     </section>
 </main>
 
@@ -630,372 +489,15 @@
 <script>
     // === 0. КОНСТАНТЫ ===
     const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby2R4j1aBQ2zmybXyqjVhgFntoduCYYX6AuZ8kMmRUWdF8ZQCNTTpPij0kmxaSxAZmjvg/exec';
-    const IMAGE_BASE_URL = 'images/';
     const USER_STORAGE_KEY = 'magic_course_user_registered_hat';
     const TG_ID_STORAGE_KEY = 'magic_course_tg_id_hat';
 
-    // === 1. НАБОР "75 лучших фокусов" (ОБНОВЛЕННЫЙ СПИСОК, ПАПКА Set75) ===
-    // Внимание: для этого набора мы сохраняем БАЗОВЫЙ ПУТЬ к картинке БЕЗ РАСШИРЕНИЯ.
-    // Расширение (.jpg или .jpeg) будет подставляться автоматически при загрузке.
-    const set75Lessons = [
-      { name: 'Фокус с монеткой и стаканом №1', videoId: '08Kx6GWfuLJ15VVLB9wZRg', imageUrl: `${IMAGE_BASE_URL}Set75/1` },
-      { name: 'Фокус с монеткой и стаканом №2', videoId: '4FHn2u9avtFz5y5edoaKZn', imageUrl: `${IMAGE_BASE_URL}Set75/2` },
-      { name: 'Фокус со стаканом', videoId: 'iwYebxbfYgsWiSavnG6f73', imageUrl: `${IMAGE_BASE_URL}Set75/3` },
-      { name: 'Фокус с монеткой и стаканом №3', videoId: 'k1A2Gu5q9jt1Ergg13B2xN', imageUrl: `${IMAGE_BASE_URL}Set75/4` },
-      { name: 'Фокус с платком и пластинкой', videoId: 'vB8PZ3bum4EmiCjz1s7p2e', imageUrl: `${IMAGE_BASE_URL}Set75/5` },
-      { name: 'Фокус с платком и ручкой', videoId: 'nMsgE7FV9egrpvLV842tof', imageUrl: `${IMAGE_BASE_URL}Set75/6` },
-      { name: 'Фокус с магнитами и стаканом', videoId: '6r3pPfgPBdLiAU1aH1dSE1', imageUrl: `${IMAGE_BASE_URL}Set75/7` },
-      { name: 'Фокус с шариком и стаканом', videoId: 'tet1Tag2mdzR5PTSaCpdJQ', imageUrl: `${IMAGE_BASE_URL}Set75/8` },
-      { name: 'Фокус с силиконовой материей и монетой', videoId: '3N8d6wnNCJXAsmfor37Z6C', imageUrl: `${IMAGE_BASE_URL}Set75/9` },
-      { name: 'Фокус с бумажным стаканчиком №1', videoId: 'eDXSZnJPXwxNWPkbqA1GFo', imageUrl: `${IMAGE_BASE_URL}Set75/10` },
-      { name: 'Фокус с бумажным стаканчиком №2', videoId: 'rcmNCKZFbdqFFTNroutiYN', imageUrl: `${IMAGE_BASE_URL}Set75/11` },
-      { name: 'Фокус со стаканом с жидкостью', videoId: 'a381iv6Ly1Q8ZdCrWG1j2Q', imageUrl: `${IMAGE_BASE_URL}Set75/12` },
-      { name: 'Фокус с воздушным шариком', videoId: 'suppep3Dju2U1ZAeti1Ueh', imageUrl: `${IMAGE_BASE_URL}Set75/13` },
-      { name: 'Фокус с коробочкой с шариком', videoId: '5NX3JZh6W3trGYAYCcrrwq', imageUrl: `${IMAGE_BASE_URL}Set75/14` },
-      { name: 'Фокус с бутылкой и осьминогом', videoId: 'osEDVw8PfuNgWAAYFzdDci', imageUrl: `${IMAGE_BASE_URL}Set75/15` },
-      { name: 'Фокус с трубочками №1', videoId: '2K9LBkR7qGDDnbqf55VQ3P', imageUrl: `${IMAGE_BASE_URL}Set75/16` },
-      { name: 'Фокус с трубочками №2', videoId: '4qK7Q3Nar6yrCJ4iLhYutr', imageUrl: `${IMAGE_BASE_URL}Set75/17` },
-      { name: 'Фокус с трубочками №3', videoId: 'sCxSEjrysf1NkoYJXBNqbr', imageUrl: `${IMAGE_BASE_URL}Set75/18` },
-      { name: 'Фокус с трубочками №4', videoId: 'quCvhgExNKs6ckrRRsp5Xe', imageUrl: `${IMAGE_BASE_URL}Set75/19` },
-      { name: 'Фокус с трубочками №5', videoId: '3UG5pnU1eeK6qMxmkS4sDk', imageUrl: `${IMAGE_BASE_URL}Set75/20` },
-      { name: 'Фокус с трубочками №6', videoId: 'xf5gR8ziY4UUxTZrVcPYUW', imageUrl: `${IMAGE_BASE_URL}Set75/21` },
-      { name: 'Фокус с трубочками №7', videoId: '7D2Pyu2hVPkaQcvfdSDnSn', imageUrl: `${IMAGE_BASE_URL}Set75/22` },
-      { name: 'Фокус с трубочками №8', videoId: '4nAZBgzGS9fs2uav9ko136', imageUrl: `${IMAGE_BASE_URL}Set75/23` },
-      { name: 'Фокус с трубочками №9', videoId: '', imageUrl: `${IMAGE_BASE_URL}Set75/24` },
-      { name: 'Фокус с ручкой №1', videoId: '2Ge2y8YGMW6W5hjjv1toy9', imageUrl: `${IMAGE_BASE_URL}Set75/25` },
-      { name: 'Фокус с ручкой и купюрой №1', videoId: 'oq3Eq1vonpJQ9gt1C7qaS6', imageUrl: `${IMAGE_BASE_URL}Set75/26` },
-      { name: 'Фокус с волшебной палочкой №1', videoId: 'cUK7UtoqNS6aHZb7MUhKJf', imageUrl: `${IMAGE_BASE_URL}Set75/27` },
-      { name: 'Фокус с ручкой и купюрой №2', videoId: '4crYByNehEmS3Pw5xydY8U', imageUrl: `${IMAGE_BASE_URL}Set75/28` },
-      { name: 'Фокус с волшебной тростью', videoId: '0BhyKpcf17f4AXPLSkdGQU', imageUrl: `${IMAGE_BASE_URL}Set75/29` },
-      { name: 'Фокус с печеньем', videoId: 'hbcu7w4WB2mTi1YTrTwW1A', imageUrl: `${IMAGE_BASE_URL}Set75/30` },
-      { name: 'Фокус с раскраской', videoId: 'bxQHGnDfqkb89pbu9CCo3H', imageUrl: `${IMAGE_BASE_URL}Set75/31` },
-      { name: 'Фокус с булавкой со спичкой', videoId: '5ZxzLHp5E5psTbddjLaTNM', imageUrl: `${IMAGE_BASE_URL}Set75/32` },
-      { name: 'Фокус с монеткой №1', videoId: '0FKMpLiKdNu37ivBzHf8LS', imageUrl: `${IMAGE_BASE_URL}Set75/33` },
-      { name: 'Фокус с монеткой и леденцом', videoId: 'oBLcgZeiP2txJM9vmENCkG', imageUrl: `${IMAGE_BASE_URL}Set75/34` },
-      { name: 'Фокус с круглой шкатулкой', videoId: 'xwjShnyz358X56Gmw1b1J2', imageUrl: `${IMAGE_BASE_URL}Set75/35` },
-      { name: 'Фокус с волшебной палочкой №2', videoId: 'egJeHpt8N8eBgxUH8PpMtx', imageUrl: `${IMAGE_BASE_URL}Set75/36` },
-      { name: 'Фокус с кувшином', videoId: 'rCnFZyShmj1aw38pQni85Y', imageUrl: `${IMAGE_BASE_URL}Set75/37` },
-      { name: 'Фокус с прямоугольной шкатулкой', videoId: 'dSiZqEQkN3WFokSwQx2hZ6', imageUrl: `${IMAGE_BASE_URL}Set75/38` },
-      { name: 'Фокус с пушистиком Байла', videoId: 'tQowRoUYHFa7PVRqWaXPnL', imageUrl: `${IMAGE_BASE_URL}Set75/39` },
-      { name: 'Фокус с колодой в футляре', videoId: 'caWeZpxqUvnseP15fVYcRh', imageUrl: `${IMAGE_BASE_URL}Set75/40` },
-      { name: 'Фокус с ручкой №2', videoId: 'dCY6qS39XBACXPNxh64Xhx', imageUrl: `${IMAGE_BASE_URL}Set75/41` },
-      { name: 'Фокус с крышками', videoId: 'gMCYd4fnqmWLeXYSVRNtbo', imageUrl: `${IMAGE_BASE_URL}Set75/42` },
-      { name: 'Фокус с верёвкой', videoId: 'dqoeyZ1K93Zc9tFzSBjpND', imageUrl: `${IMAGE_BASE_URL}Set75/43` },
-      { name: 'Фокус с монеткой №2', videoId: '0grSSEB315A3f2NcQKyXMa', imageUrl: `${IMAGE_BASE_URL}Set75/44` },
-      { name: 'Фокус с монеткой №3', videoId: '0yXkYxUkvEdzpsz2HKVmex', imageUrl: `${IMAGE_BASE_URL}Set75/45` },
-      { name: 'Фокус с монеткой и бутылкой', videoId: '5ruZSqV2cyPrNS1JDDhfmb', imageUrl: `${IMAGE_BASE_URL}Set75/46` },
-      { name: 'Фокус с карточками с животными', videoId: 'ifq98xGLDDuLUTg51iSWWK', imageUrl: `${IMAGE_BASE_URL}Set75/47` },
-      { name: 'Внимание: отсутствует на диске (Угадаю твою карту)', videoId: '', imageUrl: `${IMAGE_BASE_URL}Set75/48` },
-      { name: 'Фокус с карточками с десертами', videoId: 'jnYhSV2iDrqRZ58rX1Q5to', imageUrl: `${IMAGE_BASE_URL}Set75/49` },
-      { name: 'Фокус с карточкой “Дай пять”', videoId: 'jNQZYyMxM6Psv3aEQph7d4', imageUrl: `${IMAGE_BASE_URL}Set75/50` },
-      { name: 'Фокус с баночкой с кубиком', videoId: '2H1jE5fv7erQmXfrGzmxq2', imageUrl: `${IMAGE_BASE_URL}Set75/51` },
-      { name: 'Фокус с кубиками', videoId: 'oTZDwfWj7oTBu4yD2JXLZs', imageUrl: `${IMAGE_BASE_URL}Set75/52` },
-      { name: 'Фокус с листом бумаги', videoId: 'uXQE4Y3SU3Lb7YMnKT3jmT', imageUrl: `${IMAGE_BASE_URL}Set75/53` },
-      { name: 'Внимание: отсутствует на диске (Угадаю задуманное зрителем, с сообщником)', videoId: '', imageUrl: `${IMAGE_BASE_URL}Set75/54` },
-      { name: 'Фокус с колодой карт №1', videoId: '22QyaLJACfbBWveFoWPB4W', imageUrl: `${IMAGE_BASE_URL}Set75/55` },
-      { name: 'Фокус с колодой карт №2', videoId: 'w84xxUQNgY4ahTDtgvR7wt', imageUrl: `${IMAGE_BASE_URL}Set75/56` },
-      { name: 'Фокус с колодой карт №3', videoId: 'iz78bQfjMiJTzdtAqS5fGt', imageUrl: `${IMAGE_BASE_URL}Set75/57` },
-      { name: 'Фокус с колодой карт №4', videoId: '84CSAV9U3anYLEjsJUDdpc', imageUrl: `${IMAGE_BASE_URL}Set75/58` },
-      { name: 'Фокус с колодой карт №5', videoId: 'ekMb5PEruDL7E952AEpZji', imageUrl: `${IMAGE_BASE_URL}Set75/59` },
-      { name: 'Фокус с колодой карт с человечком', videoId: 'a4JeWQCkqSLTZZMAW818YW', imageUrl: `${IMAGE_BASE_URL}Set75/60` },
-      { name: 'Фокус с картами №1', videoId: 'g1PFvTYHreDSyj4wbrzMDs', imageUrl: `${IMAGE_BASE_URL}Set75/61` },
-      { name: 'Фокус с картами №2', videoId: 'qYGrHajXj481fCG1mZfF3d', imageUrl: `${IMAGE_BASE_URL}Set75/62` },
-      { name: 'Фокус с картами №3', videoId: 'a3csho4mnthBXHoaQJq5oB', imageUrl: `${IMAGE_BASE_URL}Set75/63` },
-      { name: 'Фокус с картами №4', videoId: 'gDa3MWw7tjjswRHiRnN7wN', imageUrl: `${IMAGE_BASE_URL}Set75/64` },
-      { name: 'Фокус с использованием рук', videoId: 'hgcwhFh2BpmXqfKKJZaTNv', imageUrl: `${IMAGE_BASE_URL}Set75/65` },
-      { name: 'Фокус с картами №5', videoId: '7Lgt1C8Bwbg4nFbD9rHfr3', imageUrl: `${IMAGE_BASE_URL}Set75/66` },
-      { name: 'Фокус с кошельком с картами', videoId: 'ahtEMk8QwNqhrWco8uoTYz', imageUrl: `${IMAGE_BASE_URL}Set75/67` },
-      { name: 'Фокус с резинками №1', videoId: '7asYipHJNxxQKntnpVWqoa', imageUrl: `${IMAGE_BASE_URL}Set75/68` },
-      { name: 'Фокус с монеткой и купюрой', videoId: 'eB9NGLCP5dAXARRikmcdEm', imageUrl: `${IMAGE_BASE_URL}Set75/69` },
-      { name: 'Фокус с резинкой', videoId: 'fLq4jibjivVwxSdXWLAvGp', imageUrl: `${IMAGE_BASE_URL}Set75/70` },
-      { name: 'Фокус с резинками №2', videoId: 'jD9gcu7q8ueA4WYAmG9ru6', imageUrl: `${IMAGE_BASE_URL}Set75/71` },
-      { name: 'Фокус с резинкой и купюрой', videoId: 'iBDgbkmsWR5auygAR8Q7jk', imageUrl: `${IMAGE_BASE_URL}Set75/72` },
-      { name: 'Фокус с купюрой и бумажкой', videoId: '4xKuVdUEDwtxQZju6VzAKv', imageUrl: `${IMAGE_BASE_URL}Set75/73` },
-      { name: 'Фокус с купюрами', videoId: 'j7b24mjPkfeYggjfxJy27D', imageUrl: `${IMAGE_BASE_URL}Set75/74` },
-      { name: 'Фокус с карточкой клоуна', videoId: '', imageUrl: `${IMAGE_BASE_URL}Set75/75` }
-    ];
-
-    // === 2. НАБОР "50 лучших фокусов" ===
-    const set50Names = [
-        "О наборе",
-        "Фокус с волшебной палочкой и горшочком",
-        "Фокус с волшебной палочкой и кубиком",
-        "Фокус с волшебной палочкой №1",
-        "Фокус с числовыми картами",
-        "Фокус с разделителем верёвки",
-        "Фокус с игральным кубиком",
-        "Фокус с баночкой с кубиками",
-        "Фокус с платком и напальчником",
-        "Фокус с картой с леской и спичкой",
-        "Фокус с разноцветными платками",
-        "Фокус с кольцом и цепочкой",
-        "Фокус с кольцом и резинкой",
-        "Фокус с резинкой №1",
-        "Фокус с сердечками №1",
-        "Фокус с сердечками №2",
-        "Фокус с башенкой с шариком",
-        "Фокус с шариком",
-        "Фокус со стаканами и шариками",
-        "Фокус со стаканом №1",
-        "Фокус с двойными картами",
-        "Фокус с резинкой №2",
-        "Фокус с верёвкой №1",
-        "Фокус с листом бумаги",
-        "Фокус с монеткой",
-        "Фокус с напальчником",
-        "Фокус с картой со створкой",
-        "Фокус с верёвкой и спичечным коробком",
-        "Фокус со спичечным коробком №1",
-        "Фокус с сердечками №3",
-        "Фокус со спичечным коробком №2",
-        "Фокус с салфеткой",
-        "Фокус с использованием пальцев",
-        "Фокус со спичками №1",
-        "Фокус со спичками №2",
-        "Фокус с использованием рук",
-        "Фокус с резинками №1",
-        "Фокус с резинкой №3",
-        "Фокус со спичечным коробком и воздушным шариком",
-        "Фокус со стаканом с жидкостью",
-        "Фокус с резинками №2",
-        "Фокус с верёвкой №2",
-        "Фокус с верёвкой №3",
-        "Фокус с картой и купюрой",
-        "Фокус с кольцом",
-        "Фокус со сложенной купюрой",
-        "Фокус с вопросами №1",
-        "Фокус со стаканом №2",
-        "Фокус с купюрой со скрепками",
-        "Фокус с вопросами №2",
-        "Фокус с волшебной палочкой №2"
-    ];
-
-    const set50Ids = [
-        "3ToVuRrRbETNc9CS8dK6PN",
-        "bASv2KDXm3exPSJhXijGv7",
-        "k7LVHDdYbLP6nJHeE78jZZ",
-        "gBuMcScL9G2Tctsq4nV53o",
-        "kQRzENqLzFHbN9zoSkELur",
-        "wzotde87eg2SCza8ifUMTV",
-        "8PiozEkZ2ShCxqhyMkGTC6",
-        "sCuBGxqbufwwyfyTR875v1",
-        "n16yQfgApriXzJve1fJTGh",
-        "6AMFukucjvC3pGK8iyH4Et",
-        "tyW2R4vq5BzFFMy95zdDM3",
-        "5NdmGkdYeLpa5FT5X64bn8",
-        "nJNkwpMN2QY6twvXmLwcBD",
-        "2Fu99zt3jN8X2opw8ZXuAr",
-        "8SFRsCyg5EpppTctLvPHR6",
-        "vNP61NmohuHVddHan6cdUj",
-        "3KN6yrnnmiotcqPKjy6c7C",
-        "vehKRwE4NzTi4yaMJkxcSv",
-        "qTTKJXx4oFuhbKuZAeKnDq",
-        "jaj5LtYzdQZa3Q9XBg6ydm",
-        "o4KKfSfM3ojWhJbGqZGHQH",
-        "jLMFoYJxp9oskaD77C8jWP",
-        "kAPviofbQ9ZZ54HdJF9Wtw",
-        "7bjn4Vj2Rc4qbHCF86ut78",
-        "3j2wei9949NT9fWMUqrNKh",
-        "2xBJbT1mLo9ZdYx1THsPpb",
-        "7PnVtftEgskF1LXb7b1YPp",
-        "8JeakD88Y9SCkgWRkRrryW",
-        "g4YY8iCjqRUwp9RYzBnJCj",
-        "eYiXB7XWaSahT47YvaBAJS",
-        "c69d54HhkmgjSrgyXtpCTE",
-        "hpQTFLA3tgvfiXsN9K7AYK",
-        "ciAQ7xRb8hS9DXHKvgFCKc",
-        "m8YVCXwW2ei7fUxZ5cZ4c2",
-        "rQecge353H6iCLYhtfdP1b",
-        "a4RGrJXp1bdPZhqBwMUErz",
-        "qRDCo5oqBcAbE33GegxQR7",
-        "74Kn1XNY1tK3Qc3gotYVbx",
-        "fVrETbquXomMmrf6DGz9xc",
-        "u5TLFJpLzzGtxfBbZBo9ey",
-        "aBWpSUmQvP9gqwf1UorosR",
-        "wtMN3Q3zu5AFg5f93aPtyk",
-        "wzNwHj9nqZ3XYwh4PgNk3y",
-        "wZxGXN8MVxRkM3qtfMmdw5",
-        "pQqNbBfFoxjRptWxZWTuKn",
-        "iNE6ZoZkS9X8PQajd9cRdb",
-        "hJvSAUQLGSLS5QiAwLr4P8",
-        "pb3qbXi6CxM4CYCLEA5Qxn",
-        "kkem4qCQPo8tfSkE2BSD3u",
-        "6dPvUz1Br9NzPJB8rSfzfn",
-        "fdnxr9H6yFkHK8SmuKs35X"
-    ];
-
-    const set50Lessons = set50Names.map((name, index) => ({
-        name,
-        duration: '',
-        videoId: set50Ids[index] || '',
-        imageUrl: `${IMAGE_BASE_URL}set50/${String(index).padStart(2, '0')}.webp`
-    }));
-
-    // === 3. НАБОР "35 лучших фокусов" (25+10, с реальными названиями) ===
-    const set25_10Names = [
-        'Фокус с волшебной футляром №1',
-        'Фокус с числовой головоломкой №1',
-        'Фокус с картами с символами №1',
-        'Фокус с картами с символами №2',
-        'Фокус с картами с символами №3',
-        'Фокус с поролоновыми шариками и кубиком',
-        'Фокус с головоломкой',
-        'Фокус с кошками',
-        'Фокус с бумажным пакетом',
-        'Фокус с картой и монеткой',
-        'Фокус с предсказанием',
-        'Фокус со шкатулкой с кубиками №1',
-        'Фокус с картой и пакетиком',
-        'Фокус с маленькой колодой',
-        'Фокус с картой',
-        'Фокус с резинкой и купюрой',
-        'Фокус с волшебной лампой №1',
-        'Фокус с купюрой в квадрат',
-        'Фокус с купюрой с окошком',
-        'Фокус с волшебными палочками',
-        'Фокус с монеткой №1',
-        'Фокус с резинкой',
-        'Фокус с резинками №1',
-        'Фокус с числовой головоломкой №2',
-        'Фокус с монетками',
-        'Фокус с волшебным футляром №2',
-        'Фокус со шкатулкой с кубиками №2',
-        'Три фокуса с маркером',
-        'Фокус с маркером',
-        'Фокус с монеткой и купюрой',
-        'Фокус с монеткой №2'
-    ];
-
-    const set25_10Lessons = [
-        { videoId: '34tV6z86qCU9mKcK1KhtDi', imageUrl: `${IMAGE_BASE_URL}set25_10/01.webp` },
-        { videoId: '3GcEheiYDUBStRvxNLRkYy', imageUrl: `${IMAGE_BASE_URL}set25_10/02.webp` },
-        { videoId: 'fkG8XqCMHF4MVHQRJzmQdo', imageUrl: `${IMAGE_BASE_URL}set25_10/03.webp` },
-        { videoId: 'oRZAQoNV97ZvSgUmAkDx5W', imageUrl: `${IMAGE_BASE_URL}set25_10/04.webp` },
-        { videoId: 'dAKBfrkpptfCKithMVbwt9', imageUrl: `${IMAGE_BASE_URL}set25_10/05.webp` },
-        { videoId: 'ty4PuJ2GNbLtT8usHtbzu3', imageUrl: `${IMAGE_BASE_URL}set25_10/06.webp` },
-        { videoId: 'f1mu6EvbPm4qYvVw9KkHEJ', imageUrl: `${IMAGE_BASE_URL}set25_10/07.webp` },
-        { videoId: 'mda93j9aBszrqeEGQ7SBTG', imageUrl: `${IMAGE_BASE_URL}set25_10/08.webp` },
-        { videoId: '7z2BMMbBa3XrzUbZXN2hTz', imageUrl: `${IMAGE_BASE_URL}set25_10/09.webp` },
-        { videoId: 'tyWBs4cUyMA8hFHeSwJHBz', imageUrl: `${IMAGE_BASE_URL}set25_10/10.webp` },
-        { videoId: 'aNczHHhtrWo3cegNaS5jv6', imageUrl: `${IMAGE_BASE_URL}set25_10/11.webp` },
-        { videoId: 'v6LMxonzmE1kWYmaYZDsNc', imageUrl: `${IMAGE_BASE_URL}set25_10/12.webp` },
-        { videoId: 'mrJ8eqBZyyvXkWtzkozRXp', imageUrl: `${IMAGE_BASE_URL}set25_10/13.webp` },
-        { videoId: 'uNwQewL8g1pYE9sXptx5sF', imageUrl: `${IMAGE_BASE_URL}set25_10/14.webp` },
-        { videoId: '5CUxuJE9wdn63oRxFa2dsf', imageUrl: `${IMAGE_BASE_URL}set25_10/15.webp` },
-        { videoId: 'c29vN8wTgVwCyUpe5Qqvti', imageUrl: `${IMAGE_BASE_URL}set25_10/16.webp` },
-        { videoId: '8Y4g2XPab6WYNo8dDoFCzn', imageUrl: `${IMAGE_BASE_URL}set25_10/17.webp` },
-        { videoId: 'bEg4ZMe7rCrd3zY8Y6UsiW', imageUrl: `${IMAGE_BASE_URL}set25_10/18.webp` },
-        { videoId: 't4Zio7LxGhULSZv8Ld566C', imageUrl: `${IMAGE_BASE_URL}set25_10/19.webp` },
-        { videoId: '6nMfZ2e9NCSRnAMy4SaPEJ', imageUrl: `${IMAGE_BASE_URL}set25_10/20.webp` },
-        { videoId: '0r6ygY6yN7s3tTcRARimcR', imageUrl: `${IMAGE_BASE_URL}set25_10/21.webp` },
-        { videoId: 'rt4VxDenV4Vyg38DBf6gnz', imageUrl: `${IMAGE_BASE_URL}set25_10/22.webp` },
-        { videoId: 'hzLErEou6ULS8ZNzWnmsdf', imageUrl: `${IMAGE_BASE_URL}set25_10/23.webp` },
-        { videoId: '8DTBFrgDjYGLYUPVUv1z6o', imageUrl: `${IMAGE_BASE_URL}set25_10/24.webp` },
-        { videoId: 'm4XHmnR3NPrpCDFTFGY5rX', imageUrl: `${IMAGE_BASE_URL}set25_10/25.webp` },
-        { videoId: '7jktYotokxnrCt5QCTYRhx', imageUrl: `${IMAGE_BASE_URL}set25_10/26.webp` },
-        { videoId: 'bHwiVbeR3k3WVNUtNvU2UC', imageUrl: `${IMAGE_BASE_URL}set25_10/27.webp` },
-        { videoId: 'nPNUvsJs2krXV1cYZdfnsC', imageUrl: `${IMAGE_BASE_URL}set25_10/28.webp` },
-        { videoId: 'bxjDBwydRLfhGKd8uJjXyk', imageUrl: `${IMAGE_BASE_URL}set25_10/29.webp` },
-        { videoId: 'iwGCSgU4GggeP9HaUNxEiy', imageUrl: `${IMAGE_BASE_URL}set25_10/30.webp` },
-        { videoId: 'jRQ4LcejoUhe2uhRJe7tQL', imageUrl: `${IMAGE_BASE_URL}set25_10/31.webp` }
-    ].map((item, index) => ({
-        name: set25_10Names[index] || `Фокус ${index + 1}`,
-        duration: '',
-        videoId: item.videoId,
-        imageUrl: item.imageUrl
-    }));
-
-    // === 4. "10 взрывных фокусов" (зелёный) ===
-    const greenLessons = [
-        { name: 'Фокус с купюрой со скрепками',       videoId: 'eNNqaZJYQ1pT4QyzrEmHxG', imageUrl: `${IMAGE_BASE_URL}set_green/01.webp`, duration: '' },
-        { name: 'Фокус с баночкой с кубиками',        videoId: 'prvzotYQQiLi1hyW2E3dre', imageUrl: `${IMAGE_BASE_URL}set_green/02.webp`, duration: '' },
-        { name: 'Фокус с разделителем верёвки',       videoId: 'oESzGbD7QMM5F6jskWccYo', imageUrl: `${IMAGE_BASE_URL}set_green/03.webp`, duration: '' },
-        { name: 'Фокус с разноцветными платками',     videoId: 'nzvo9AmhZVHcN7Z8B3kApM', imageUrl: `${IMAGE_BASE_URL}set_green/04.webp`, duration: '' },
-        { name: 'Фокус с карточкой клоуна',           videoId: '08GkF4CUbxAjjTvvL3wQjZ', imageUrl: `${IMAGE_BASE_URL}set_green/05.webp`, duration: '' },
-        { name: 'Фокус с резинкой №1',                videoId: 'opqz21wArkBwrbE7qdqHYX', imageUrl: `${IMAGE_BASE_URL}set_green/06.webp`, duration: '' },
-        { name: 'Фокус с резинками',                  videoId: 'dRxiLD1gMhjdCPZLRDmi1W', imageUrl: `${IMAGE_BASE_URL}set_green/07.webp`, duration: '' },
-        { name: 'Фокус с резинкой №2',                videoId: '8Ugpwk13JTBTeCVnEJ7Fs2', imageUrl: `${IMAGE_BASE_URL}set_green/08.webp`, duration: '' },
-        { name: 'Фокус с резинкой №3',                videoId: 'hcubQZveGW9FDkMgqynVxH', imageUrl: `${IMAGE_BASE_URL}set_green/09.webp`, duration: '' },
-        { name: 'Фокус с резинкой и купюрой',         videoId: 'agikb18oS1DLyU728RTyTX', imageUrl: `${IMAGE_BASE_URL}set_green/10.webp`, duration: '' }
-    ];
-
-    // === 5. "10 взрывных фокусов" (синий) ===
-    const blueLessons = [
-        { name: 'Фокус с печеньем',                   videoId: 'fAmKanTL8em72QuWteF8zi', imageUrl: `${IMAGE_BASE_URL}set_blue/01.webp`, duration: '' },
-        { name: 'Фокус с карточкой сердечка',         videoId: 'hUSmqbZC4ujfhP24AAe3aZ', imageUrl: `${IMAGE_BASE_URL}set_blue/02.webp`, duration: '' },
-        { name: 'Фокус с волшебной тростью',          videoId: 'jSMYGhYqWWwpEhTETwcCKc', imageUrl: `${IMAGE_BASE_URL}set_blue/03.webp`, duration: '' },
-        { name: 'Фокус со стаканами и шариками',      videoId: 'cRHRD18ujwX9hSJixYSJL7', imageUrl: `${IMAGE_BASE_URL}set_blue/04.webp`, duration: '' },
-        { name: 'Фокус с картой с леской и спичкой',  videoId: 'mArVGiQpb82DjmfgDcB5be', imageUrl: `${IMAGE_BASE_URL}set_blue/05.webp`, duration: '' },
-        { name: 'Фокус с резинкой №1',                videoId: 'nPjhzDgaVrtU5o3r1aRNwx', imageUrl: `${IMAGE_BASE_URL}set_blue/06.webp`, duration: '' },
-        { name: 'Фокус с резинкой №2',                videoId: 'dY6BmY9DeNVhRQe9tcmsf7', imageUrl: `${IMAGE_BASE_URL}set_blue/07.webp`, duration: '' },
-        { name: 'Фокус с резинкой №3',                videoId: 'sGacCBFkf7wug8jbrw49MZ', imageUrl: `${IMAGE_BASE_URL}set_blue/08.webp`, duration: '' },
-        { name: 'Фокус с резинками',                  videoId: 'f4LpWeyHss8NRZBGLbNZS6', imageUrl: `${IMAGE_BASE_URL}set_blue/09.webp`, duration: '' },
-        { name: 'Фокус с использованием рук',          videoId: '3s9iHn4D9mjBygE4bHmkZB', imageUrl: `${IMAGE_BASE_URL}set_blue/10.webp`, duration: '' }
-    ];
-
-    // === 6. 10 ВФ ДвШ (фиолетовый) — 8 и 9 удалены, последний = 10 ===
-    const purpleLessons = [
-        { name: 'Фокус с купюрой и бумажкой',         videoId: '8SLdwKWH598mPnypAraUXc', imageUrl: `${IMAGE_BASE_URL}set_purple/01.webp`, duration: '' },
-        { name: 'Фокус с двойными картами',           videoId: 'seMxJbKpcQfcqSsfh9XneG', imageUrl: `${IMAGE_BASE_URL}set_purple/02.webp`, duration: '' },
-        { name: 'Фокус с платком и напальчником',     videoId: '3WGD5efBEeBDSPmPZpEgcV', imageUrl: `${IMAGE_BASE_URL}set_purple/03.webp`, duration: '' },
-        { name: 'Фокус с башенкой с шариком',         videoId: 'xtoiDKigimDFTXQpUCcSnT', imageUrl: `${IMAGE_BASE_URL}set_purple/04.webp`, duration: '' },
-        { name: 'Фокус с колодой в футляре',          videoId: 'wpkGbDNU4HXMYRshphRBYQ', imageUrl: `${IMAGE_BASE_URL}set_purple/05.webp`, duration: '' },
-        { name: 'Фокус с карточкой “Дай пять”',       videoId: 'bqJhGRTT1Vjn55NiXRXbUK', imageUrl: `${IMAGE_BASE_URL}set_purple/06.webp`, duration: '' },
-        { name: 'Фокус с резинкой №1',                videoId: 'vHd3h4N7u8nhGt6QD2jtYx', imageUrl: `${IMAGE_BASE_URL}set_purple/07.webp`, duration: '' },
-        { name: 'Фокус с использованием рук',          videoId: 'uB8SjBBhtCnqfqfouDVswN', imageUrl: `${IMAGE_BASE_URL}set_purple/08.webp`, duration: '' }
-    ];
-
-    // === 7. 10 ВФ ДвШ (красный / оранжевый) — 7,8,9 нет, сразу 10 ===
-    const orangeLessons = [
-        { name: 'Фокус с поролоновыми шариками и кубиком', videoId: 'efc9efrqePdRPPyv1y1QBi', imageUrl: `${IMAGE_BASE_URL}set_orange/01.webp`, duration: '' },
-        { name: 'Фокус с кольцом и цепочкой',               videoId: 'bHR4Ee8wfKTfCQqF4G4KfA', imageUrl: `${IMAGE_BASE_URL}set_orange/02.webp`, duration: '' },
-        { name: 'Фокус с баночкой с кубиком',               videoId: '62dGFaS525Re3WCi6N3K4L', imageUrl: `${IMAGE_BASE_URL}set_orange/03.webp`, duration: '' },
-        { name: 'Фокус с числовыми картами',                videoId: 'pKEQaU8CRxivmYiDPffRpM', imageUrl: `${IMAGE_BASE_URL}set_orange/04.webp`, duration: '' },
-        { name: 'Фокус с кошельком с картами',              videoId: 'xwHAGkCjKxfqXENV8wXCYQ', imageUrl: `${IMAGE_BASE_URL}set_orange/05.webp`, duration: '' },
-        { name: 'Фокус с кольцом и резинкой',               videoId: 'sKYxKRvA2dLnkUCPhUwvkH', imageUrl: `${IMAGE_BASE_URL}set_orange/06.webp`, duration: '' },
-        { name: 'Фокус с резинками №3',                     videoId: 'pVq4YJgTw7cqDxsRdZXtym', imageUrl: `${IMAGE_BASE_URL}set_orange/07.webp`, duration: '' }
-    ];
-
-    // === 8. Набор "5 лучших фокусов" ===
-    const set5BestLessons = [
-        { name: 'Фокус №1',   videoId: 'vMKwzCp7uZsZYTZfFkZk9H', imageUrl: `${IMAGE_BASE_URL}set5/01.webp`, duration: '' },
-        { name: 'Фокус №2',   videoId: '0rgGCD1buzbDh5f2iE6ViX', imageUrl: `${IMAGE_BASE_URL}set5/02.webp`, duration: '' },
-        { name: 'Фокус №3',   videoId: 'ovAdCrtQdD3HAcFhCmSr5Q', imageUrl: `${IMAGE_BASE_URL}set5/03.webp`, duration: '' },
-        { name: 'Фокус №4',   videoId: 'hHESqCThnp95ENSHhxtVQR', imageUrl: `${IMAGE_BASE_URL}set5/04.webp`, duration: '' },
-        { name: 'Фокус №5',   videoId: '3WNXwk6ipai844JbUkKVdt', imageUrl: `${IMAGE_BASE_URL}set5/05.webp`, duration: '' },
-        { name: 'Бонус №1',   videoId: 'qgAmH1R3r2CiHJD3BGpH4D', imageUrl: `${IMAGE_BASE_URL}set5/06.webp`, duration: '' },
-        { name: 'Бонус №2',   videoId: 'bLo58DWJNC239xctGsAonf', imageUrl: `${IMAGE_BASE_URL}set5/07.webp`, duration: '' }
-    ];
-
-    // === 9. РЕЕСТР КУРСОВ ===
-    const courses = {
-        set_75:     { title: '75 лучших фокусов',             lessons: set75Lessons,      indexOffset: 1 },
-        set_50:     { title: '50 лучших фокусов',             lessons: set50Lessons,      indexOffset: 0 },
-        set_25_10:  { title: '35 лучших фокусов',             lessons: set25_10Lessons,   indexOffset: 1 },
-        set_green:  { title: '10 взрывных фокусов (зелёный)', lessons: greenLessons,      indexOffset: 1 },
-        set_blue:   { title: '10 взрывных фокусов (синий)',   lessons: blueLessons,       indexOffset: 1 },
-        set_purple: { title: '10 ВФ ДвШ (фиолетовый)',        lessons: purpleLessons,     indexOffset: 1 },
-        set_orange: { title: '10 ВФ ДвШ (красный)',           lessons: orangeLessons,     indexOffset: 1 },
-        set_5_best: { title: '5 лучших фокусов',              lessons: set5BestLessons,   indexOffset: 1 }
-    };
-
-    // === 10. ГЛОБАЛ ===
-    let courseSelectionPage, lessonListView, videoPlayerView, lessonList;
-    let currentCourseId = null;
+    // === 1. ГЛОБАЛ ===
     let bgMusic, clickSound, isMusicPlaying = false, isSoundEnabled = true;
-    let kinescopePlayer, videoThumbnailLarge, noVideoWarning;
     let registrationOverlay, policyInitialView, policyFullView, registrationFormView, successView;
     let registrationForm, loadingSpinner;
 
     function initializeDOMElements() {
-        courseSelectionPage = document.getElementById('course-selection');
-        lessonListView = document.getElementById('lesson-list-view');
-        videoPlayerView = document.getElementById('video-player-view');
-        lessonList = document.getElementById('lesson-list');
-        kinescopePlayer = document.getElementById('kinescope-player');
-        videoThumbnailLarge = document.getElementById('video-thumbnail-large');
-        noVideoWarning = document.getElementById('no-video-warning');
-
         bgMusic = document.getElementById('bg-music');
         clickSound = document.getElementById('click-sound');
         document.getElementById('music-toggle').addEventListener('click', toggleMusic);
@@ -1017,7 +519,7 @@
         setupCarouselWheelScroll();
     }
 
-    // === 11. АУДИО ===
+    // === 2. АУДИО ===
     function playClickSound() {
         if (isSoundEnabled && clickSound) {
             clickSound.currentTime = 0;
@@ -1044,16 +546,6 @@
         }
     }
 
-    function pauseMusicForVideo() {
-        if (isMusicPlaying) bgMusic.pause();
-    }
-
-    function resumeMusicAfterVideo() {
-        if (isMusicPlaying) {
-            bgMusic.play().catch(() => {});
-        }
-    }
-
     function setupTelegramWebAppEvents() {
         if (window.Telegram && window.Telegram.WebApp) {
             Telegram.WebApp.ready();
@@ -1061,13 +553,13 @@
                 if (document.hidden) {
                     if (isMusicPlaying) bgMusic.pause();
                 } else {
-                    if (isMusicPlaying) resumeMusicAfterVideo();
+                    if (isMusicPlaying) bgMusic.play().catch(() => {});
                 }
             });
         }
     }
 
-    // === 12. КАРУСЕЛЬ ===
+    // === 3. КАРУСЕЛЬ ===
     function setupCarouselWheelScroll() {
         const wrapper = document.getElementById('course-carousel-wrapper');
         if (!wrapper) return;
@@ -1079,146 +571,7 @@
         }, { passive: false });
     }
 
-    // === 13. НАВИГАЦИЯ ===
-    function startApp() {
-        document.body.addEventListener('click', () => {
-            if (!isMusicPlaying && bgMusic.paused) toggleMusic();
-        }, { once: true });
-
-        handleInitialCheck();
-        showCourseSelection();
-    }
-
-    function showCourseSelection() {
-        courseSelectionPage.classList.remove('hidden');
-        lessonListView.classList.add('hidden');
-        videoPlayerView.classList.add('hidden');
-    }
-
-    function showLessonList(courseId) {
-        playClickSound();
-        currentCourseId = courseId;
-
-        const course = courses[courseId];
-        if (!course) return;
-
-        const placeholderCourseName = document.getElementById('placeholder-course-name');
-        document.getElementById('lesson-list-title').textContent = `Набор: ${course.title}`;
-        if (placeholderCourseName) placeholderCourseName.textContent = course.title;
-
-        const lessonsPlaceholder = document.getElementById('lessons-placeholder');
-        lessonList.innerHTML = '';
-
-        if (!course.lessons.length) {
-            lessonsPlaceholder.innerHTML = `
-                <span class="placeholder-icon">⏳</span>
-                <p style="font-size:1.0em;font-weight:700;margin-bottom:4px;">
-                    Видео-уроки для набора "${course.title}" в процессе загрузки.
-                </p>
-                <p style="font-size:0.9em;">Скоро здесь появятся ролики.</p>
-            `;
-        } else {
-            lessonsPlaceholder.innerHTML = `
-                <span class="placeholder-icon">🎬</span>
-                <p style="font-size:1.0em;font-weight:700;margin-bottom:4px;">
-                    Выберите урок ниже, чтобы посмотреть видео.
-                </p>
-            `;
-        }
-
-        const indexOffset = (typeof course.indexOffset === 'number') ? course.indexOffset : 1;
-
-        course.lessons.forEach((lesson, index) => {
-            const displayIndex = index + indexOffset;
-            const li = document.createElement('li');
-            li.className = 'lesson-item';
-
-            // ОБНОВЛЕННАЯ ЛОГИКА ДЛЯ КАРТИНОК (смешанные jpg/jpeg)
-            const img = document.createElement('img');
-            img.className = 'lesson-item-preview';
-            img.alt = `Урок ${displayIndex}`;
-
-            if (courseId === 'set_75') {
-                // Для этого набора пробуем сначала .jpg, если ошибка - пробуем .jpeg
-                img.src = `${lesson.imageUrl}.jpg`;
-                img.onerror = function() {
-                    this.onerror = null; // Предотвращаем зацикливание
-                    this.src = `${lesson.imageUrl}.jpeg`;
-                };
-            } else {
-                // Для остальных наборов используем путь как есть
-                img.src = lesson.imageUrl;
-            }
-
-            const span = document.createElement('span');
-            span.className = 'title';
-            span.textContent = `${displayIndex}. ${lesson.name}`;
-
-            li.appendChild(img);
-            li.appendChild(span);
-            li.addEventListener('click', () => playLesson(lesson, li));
-            lessonList.appendChild(li);
-        });
-
-        courseSelectionPage.classList.add('hidden');
-        videoPlayerView.classList.add('hidden');
-        lessonListView.classList.remove('hidden');
-        lessonListView.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function playLesson(lesson, clickedElement) {
-        playClickSound();
-        pauseMusicForVideo();
-
-        document.querySelectorAll('.lesson-item').forEach(item => item.classList.remove('active'));
-        clickedElement.classList.add('active');
-
-        document.getElementById('current-lesson-name').textContent = lesson.name;
-
-        // ОБНОВЛЕННАЯ ЛОГИКА ДЛЯ БОЛЬШОГО ПРЕВЬЮ В ПЛЕЕРЕ
-        if (currentCourseId === 'set_75') {
-             videoThumbnailLarge.src = `${lesson.imageUrl}.jpg`;
-             videoThumbnailLarge.onerror = function() {
-                 this.onerror = null;
-                 this.src = `${lesson.imageUrl}.jpeg`;
-             };
-        } else {
-             videoThumbnailLarge.src = lesson.imageUrl || '';
-        }
-        videoThumbnailLarge.style.opacity = 1;
-
-        if (lesson.videoId && lesson.videoId.trim() !== '') {
-            kinescopePlayer.src = `https://kinescope.io/embed/${lesson.videoId}`;
-            noVideoWarning.classList.add('hidden');
-            setTimeout(() => { videoThumbnailLarge.style.opacity = 0; }, 150);
-        } else {
-            kinescopePlayer.src = '';
-            noVideoWarning.classList.remove('hidden');
-            videoThumbnailLarge.style.opacity = 1;
-        }
-
-        lessonListView.classList.add('hidden');
-        videoPlayerView.classList.remove('hidden');
-        videoPlayerView.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function goBackToLessonList() {
-        playClickSound();
-        kinescopePlayer.src = '';
-        videoThumbnailLarge.style.opacity = 0;
-        noVideoWarning.classList.add('hidden');
-        resumeMusicAfterVideo();
-
-        if (currentCourseId) {
-            videoPlayerView.classList.add('hidden');
-            lessonListView.classList.remove('hidden');
-            lessonListView.scrollIntoView({ behavior: 'smooth' });
-        } else {
-            showCourseSelection();
-        }
-    }
-
-    // === 14. РЕГИСТРАЦИЯ ===
+    // === 4. РЕГИСТРАЦИЯ ===
     function getTelegramIdFromContext() {
         if (window.Telegram && window.Telegram.WebApp &&
             Telegram.WebApp.initDataUnsafe &&
@@ -1332,31 +685,30 @@
         }
     }
 
-    // === 15. ИНИЦИАЛИЗАЦИЯ ===
+    // === 5. ИНИЦИАЛИЗАЦИЯ ===
     document.addEventListener('DOMContentLoaded', () => {
         initializeDOMElements();
 
+        // Обработчик для клика по карточкам с прямой ссылкой
         document.querySelectorAll('.course-card').forEach(card => {
             card.addEventListener('click', (e) => {
-                const courseId = e.currentTarget.getAttribute('data-id');
-
-                // --- ЛОГИКА ДЛЯ 75 ЛУЧШИХ (НОВАЯ ВЕРСИЯ) ---
-                if (courseId === 'set_75_new_link') {
-                    window.open('https://disk.yandex.ru/d/7GCK3lh-fGtkrg', '_blank');
-                    return; 
+                const link = e.currentTarget.getAttribute('data-link');
+                if (link) {
+                    playClickSound();
+                    // Небольшая задержка, чтобы звук успел начать проигрывание
+                    setTimeout(() => {
+                        window.open(link, '_blank');
+                    }, 100);
                 }
-
-                // --- НОВОЕ: ЛОГИКА ДЛЯ 35 ЛУЧШИХ (НОВАЯ ВЕРСИЯ) ---
-                if (courseId === 'set_35_new_link') {
-                    window.open('https://disk.yandex.ru/d/0VVD1y_ZakwGpQ', '_blank');
-                    return;
-                }
-                
-                showLessonList(courseId);
             });
         });
 
-        startApp();
+        // Запуск музыки при первом клике на странице (политика браузеров)
+        document.body.addEventListener('click', () => {
+            if (!isMusicPlaying && bgMusic.paused) toggleMusic();
+        }, { once: true });
+
+        handleInitialCheck();
     });
 </script>
 </body>
